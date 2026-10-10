@@ -1,0 +1,4171 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PunePulse — Find Your Kind of Pune | Premium Local Discovery & Outing Planner</title>
+  <meta name="description" content="Premium local discovery platform and personalized outing planner for Pune. Discover cafés, hidden gems, hill ridges, and heritage with practical time and budget intelligence.">
+  
+  <!-- Google Fonts: Newsreader for Luxury Editorial Serif, Plus Jakarta Sans for UI Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: { 50: '#FDFCF9', 100: '#FBF9F5', 200: '#F5F0E6', 300: '#EBE3D3' },
+            charcoal: { 900: '#141312', 800: '#1A1917', 700: '#2A2926', 600: '#3D3B37', 500: '#54524D', 400: '#75726C', 200: '#C7C4BC' },
+            forest: { 900: '#0F211A', 800: '#152C23', 700: '#1E3A2F', 600: '#284E3F', 500: '#386B57', 100: '#E3EDE8' },
+            terracotta: { 800: '#943E20', 700: '#B04C28', 600: '#C85A32', 500: '#D9714B', 100: '#FCECE6' }
+          },
+          fontFamily: {
+            serif: ['Newsreader', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif']
+          },
+          boxShadow: {
+            'soft-sm': '0 2px 8px -2px rgba(20, 19, 18, 0.04)',
+            'soft': '0 8px 24px -4px rgba(20, 19, 18, 0.06)',
+            'editorial': '0 20px 48px -10px rgba(20, 19, 18, 0.1)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #FBF9F5;
+      color: #1A1917;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .font-editorial {
+      font-family: 'Newsreader', Georgia, serif;
+    }
+    ::selection {
+      background: #E3EDE8;
+      color: #1E3A2F;
+    }
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F5F0E6;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C7C4BC;
+      border-radius: 4px;
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.3s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- ================= NAVBAR ================= -->
+  <header id="mainNav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-[#FBF9F5]/90 backdrop-blur-md border-b border-[#E8E4DA]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between">
+        
+        <!-- Logo -->
+        <a href="#" class="group flex items-center gap-2.5 focus:outline-none">
+          <span class="w-8 h-8 rounded-full bg-[#1E3A2F] text-[#FBF9F5] flex items-center justify-center font-serif text-lg font-bold shadow-sm group-hover:scale-105 transition-transform">
+            P
+          </span>
+          <div class="flex flex-col">
+            <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[#1A1917]">
+              Pune<span class="text-[#C85A32]">Pulse</span>
+            </span>
+            <span class="text-[9px] uppercase tracking-widest text-[#75726C] -mt-1 font-medium hidden sm:inline">
+              Local Discovery & Outing Planner
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-7 text-[14px] font-medium text-[#3D3B37]">
+          <a href="#discover" class="hover:text-[#1E3A2F] transition-colors py-1">Discover</a>
+          <a href="#moods" class="hover:text-[#1E3A2F] transition-colors py-1">By Mood</a>
+          <a href="#planner-section" class="hover:text-[#1E3A2F] transition-colors py-1 font-semibold text-[#C85A32]">Plan Outing</a>
+          <a href="#areas" class="hover:text-[#1E3A2F] transition-colors py-1">Neighborhoods</a>
+          <a href="#hidden-gems" class="hover:text-[#1E3A2F] transition-colors py-1">Hidden Gems</a>
+        </nav>
+
+        <!-- Right Action Items -->
+        <div class="hidden sm:flex items-center gap-3">
+          <select
+            id="navAreaSelect"
+            onchange="handleNavAreaChange(this.value)"
+            class="px-3 py-1.5 rounded-full text-xs font-semibold bg-[#F5F0E6] text-[#3D3B37] border border-[#E8E4DA] focus:outline-none focus:border-[#1E3A2F] cursor-pointer"
+          >
+            <option value="all">📍 All Pune Hubs</option>
+            <option value="FC Road & Deccan" selected>📍 FC Road & Deccan (Core)</option>
+            <option value="JM Road">📍 JM Road</option>
+            <option value="Koregaon Park">📍 Koregaon Park</option>
+            <option value="Kalyani Nagar">📍 Kalyani Nagar</option>
+            <option value="Baner & Balewadi">📍 Baner & Balewadi</option>
+            <option value="Camp">📍 Camp</option>
+            <option value="Kothrud">📍 Kothrud</option>
+            <option value="Pashan & Hills">📍 Pashan & Hills</option>
+          </select>
+
+          <a
+            href="#planner-section"
+            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold bg-[#1E3A2F] text-white hover:bg-[#284E3F] transition-all shadow-soft"
+          >
+            <span>✦ Plan My Day</span>
+          </a>
+        </div>
+
+        <!-- Mobile Trigger -->
+        <button
+          onclick="toggleMobileMenu()"
+          class="md:hidden p-2 rounded-lg text-[#3D3B37] hover:bg-[#F5F0E6]"
+          aria-label="Toggle Navigation"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
+        </button>
+
+      </div>
+
+      <!-- Mobile Nav Drawer -->
+      <div id="mobileDrawer" class="hidden md:hidden mt-3 pt-3 pb-4 border-t border-[#E8E4DA] space-y-3 text-sm">
+        <a href="#discover" onclick="toggleMobileMenu()" class="block py-1 text-[#2A2926]">Discover Places</a>
+        <a href="#moods" onclick="toggleMobileMenu()" class="block py-1 text-[#2A2926]">Explore by Mood</a>
+        <a href="#planner-section" onclick="toggleMobileMenu()" class="block py-1 font-semibold text-[#C85A32]">Personalized Outing Planner</a>
+        <a href="#areas" onclick="toggleMobileMenu()" class="block py-1 text-[#2A2926]">Neighborhood Briefings</a>
+        <a href="#hidden-gems" onclick="toggleMobileMenu()" class="block py-1 text-[#2A2926]">Hidden Gems</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="flex-1">
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-16 lg:pt-40 lg:pb-24 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Editorial Headline -->
+          <div class="lg:col-span-7 space-y-8">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#E3EDE8] border border-[#B9E4D0] text-[#1E3A2F] text-xs font-semibold tracking-wide">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#1E3A2F]"></span>
+              <span>THE CURATED CITY DISCOVERY JOURNAL</span>
+            </div>
+
+            <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold tracking-tight text-[#141312] leading-[1.08]">
+              Your Pune. <br />
+              <span class="italic font-normal text-[#C85A32]">Your pace.</span>
+            </h1>
+
+            <p className="text-base sm:text-lg text-[#54524D] leading-relaxed max-w-xl font-normal">
+              From hidden heritage bakeries and breezy hilltop quarries to late-night filter coffee and unhurried conversations — discover the places that fit your exact mood, budget, and afternoon hours.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+              <a
+                href="#planner-section"
+                class="inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-full bg-[#1E3A2F] text-[#FBF9F5] text-sm font-semibold hover:bg-[#284E3F] transition-all shadow-editorial hover:shadow-soft-lg transform hover:-translate-y-0.5"
+              >
+                <span>✦ Plan My Outing</span>
+                <span>→</span>
+              </a>
+
+              <a
+                href="#discover"
+                class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white text-[#2A2926] text-sm font-medium hover:bg-[#F5F0E6] transition-all border border-[#E8E4DA] shadow-soft-sm"
+              >
+                <span>Explore The City</span>
+              </a>
+            </div>
+
+            <!-- Value Indicators Strip -->
+            <div class="pt-6 grid grid-cols-3 gap-4 border-t border-[#E8E4DA]/80 max-w-lg">
+              <div class="space-y-1">
+                <div class="flex items-center gap-1.5 text-xs font-semibold text-[#1A1917]">
+                  <span class="text-[#C85A32]">₹</span>
+                  <span>Real Budgets</span>
+                </div>
+                <p class="text-[11px] text-[#75726C] leading-snug">
+                  From ₹80 bun maska to ₹900 craft brews.
+                </p>
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex items-center gap-1.5 text-xs font-semibold text-[#1A1917]">
+                  <span class="text-[#1E3A2F]">⏱</span>
+                  <span>Time-Smart</span>
+                </div>
+                <p class="text-[11px] text-[#75726C] leading-snug">
+                  Honest traffic buffers and ideal windows.
+                </p>
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex items-center gap-1.5 text-xs font-semibold text-[#1A1917]">
+                  <span class="text-[#C85A32]">📍</span>
+                  <span>FC Road Core</span>
+                </div>
+                <p class="text-[11px] text-[#75726C] leading-snug">
+                  Deep Deccan & FC Road verified listings.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Topographic 3D Canvas Visualizer -->
+          <div class="lg:col-span-5 w-full h-[380px] sm:h-[460px]">
+            <div class="relative w-full h-full rounded-3xl border border-[#E8E4DA] bg-gradient-to-b from-[#F5F0E6]/50 to-[#FBF9F5] shadow-editorial overflow-hidden flex items-center justify-center">
+              <canvas id="topoCanvas" class="w-full h-full absolute inset-0"></canvas>
+              <div class="absolute bottom-4 left-5 z-10 flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full border border-[#E8E4DA] text-[10px] text-[#75726C]">
+                <span class="w-2 h-2 rounded-full bg-[#C85A32] animate-pulse"></span>
+                <span class="font-medium tracking-wide">PUNE ELEVATION TOPOGRAPHY · INTERACTIVE RADIAL MAP</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- MOOD DISCOVERY STRIP -->
+    <section id="moods" class="py-14 bg-white border-y border-[#E8E4DA]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-3">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#C85A32]">
+              Instant Mood Matching
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl font-semibold tracking-tight text-[#141312] mt-1">
+              What are we feeling today?
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-[#75726C] max-w-md">
+            Click any vibe below to instantly start an automated itinerary or filter the city catalog.
+          </p>
+        </div>
+
+        <div id="moodGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3.5">
+          <!-- Dynamic Mood Cards Injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TRENDING IN PUNE (ASYMMETRIC SECTION) -->
+    <section id="discover" class="py-20 bg-[#FBF9F5]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-[#C85A32]">
+              Curated City Highlights
+            </span>
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-[#141312] mt-1">
+              On Pune’s radar.
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-[#75726C] max-w-md leading-relaxed">
+            Essential institutions, timeless hillside trails, and quiet courtyard cafés chosen for quality, authenticity, and enduring cultural impact.
+          </p>
+        </div>
+
+        <!-- Asymmetric Spotlight Row -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-8">
+          
+          <!-- Hero Card: Vaishali (7 cols) -->
+          <div
+            onclick="openPlaceModal('vaishali-fc-road')"
+            class="lg:col-span-7 group cursor-pointer bg-white rounded-3xl border border-[#E8E4DA] overflow-hidden shadow-soft hover:shadow-editorial transition-all duration-300"
+          >
+            <div class="relative aspect-[16/10] sm:aspect-[16/9] overflow-hidden bg-[#1A1917]">
+              <img
+                src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80"
+                alt="Vaishali FC Road"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+              
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="px-3 py-1 rounded-full text-xs font-semibold bg-[#C85A32] text-white">
+                  Featured Pune Anchor
+                </span>
+                <span class="px-3 py-1 rounded-full text-xs font-medium bg-white/90 text-[#141312]">
+                  Iconic Eateries
+                </span>
+              </div>
+
+              <div class="absolute bottom-5 left-5 right-5 text-white">
+                <span class="text-xs font-medium text-[#F5F0E6] flex items-center gap-1.5 mb-1">
+                  <span>FC Road & Deccan</span>
+                  <span>·</span>
+                  <span>₹220 avg spend</span>
+                </span>
+                <h3 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight">
+                  Vaishali
+                </h3>
+              </div>
+            </div>
+
+            <div class="p-6 sm:p-8 space-y-4">
+              <p class="text-sm sm:text-base text-[#3D3B37] leading-relaxed">
+                Operating since 1971, Vaishali is more than a restaurant — it is an emotional landmark on Fergusson College Road. Known for its breezy garden courtyard, quick-moving waitstaff in crisp uniforms, and legendary SPDP and filter coffee.
+              </p>
+
+              <div class="p-3.5 bg-[#F5F0E6] rounded-xl border border-[#E8E4DA] flex items-center justify-between text-xs text-[#54524D]">
+                <span class="font-medium italic">
+                  Best Time: Arrive before 8:30 AM or 4:00 PM – 5:30 PM.
+                </span>
+                <span class="font-semibold text-[#1E3A2F] group-hover:translate-x-1 transition-transform flex items-center gap-1 shrink-0 ml-3">
+                  Explore Details →
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column Cards (5 cols) -->
+          <div id="sideTrendingCol" class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+            <!-- Injected by JS -->
+          </div>
+
+        </div>
+
+        <!-- Secondary Row -->
+        <div id="bottomTrendingRow" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Injected by JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CORE FEATURE: PERSONALIZED OUTING PLANNER (INTERACTIVE CONCIERGE) -->
+    <section id="planner-section" class="py-20 bg-gradient-to-b from-white via-[#FBF9F5] to-white border-t border-[#E8E4DA]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E3EDE8] text-[#1E3A2F] text-xs font-semibold">
+            <span>✦ ALGORITHMIC CONCIERGE ENGINE</span>
+          </div>
+          <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#141312]">
+            Personalized Outing Planner
+          </h2>
+          <p class="text-xs sm:text-sm text-[#75726C] leading-relaxed">
+            Answer a few quick questions. PunePulse computes an ordered sequence of real spots, realistic per-person and group costs, transit buffers, and peak-hour traffic guidance.
+          </p>
+        </div>
+
+        <!-- Interactive Planner Container -->
+        <div id="plannerCard" class="bg-white rounded-3xl border border-[#E8E4DA] shadow-editorial p-6 sm:p-10 max-w-4xl mx-auto">
+          <!-- Multi-Step Wizard or Generated View rendered here -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EXPLORE BY NEIGHBORHOOD -->
+    <section id="areas" class="py-20 bg-white border-t border-[#E8E4DA]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="max-w-3xl mb-10 space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-[#1E3A2F]">
+            Area-Based Discovery
+          </span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-[#141312]">
+            Explore Pune by neighborhood.
+          </h2>
+          <p class="text-sm text-[#75726C] leading-relaxed">
+            Every neighborhood has a distinct pulse. While our MVP provides deep verified coverage for FC Road & Deccan, browse other core pockets as our curated catalog expands.
+          </p>
+        </div>
+
+        <!-- Area Tabs -->
+        <div id="areaTabs" class="flex items-center gap-2 overflow-x-auto pb-4 mb-8">
+          <!-- Injected by JS -->
+        </div>
+
+        <!-- Area Briefing Container -->
+        <div id="areaBriefingContainer" class="bg-[#FBF9F5] rounded-3xl p-6 sm:p-10 border border-[#E8E4DA] shadow-soft mb-12">
+          <!-- Injected by JS -->
+        </div>
+
+        <!-- Area Places Grid -->
+        <div id="areaPlacesContainer">
+          <!-- Injected by JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- HIDDEN GEMS SECTION -->
+    <section id="hidden-gems" class="py-20 bg-[#FBF9F5] border-t border-[#E8E4DA]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E3EDE8] text-[#1E3A2F] text-xs font-semibold mb-2">
+              <span>✦ OFF THE MAIN CORRIDOR</span>
+            </div>
+            <h2 class="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-[#141312]">
+              Pune’s hidden sanctuaries.
+            </h2>
+          </div>
+          <p class="text-xs sm:text-sm text-[#75726C] max-w-md leading-relaxed">
+            Curated spaces that avoid commercial hype: indie book sanctuaries with herbal chai, 8th-century subterranean basalt caves, and heritage bakery balconies.
+          </p>
+        </div>
+
+        <div id="hiddenGemsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- BEST TIME TO GO GUIDE -->
+    <section class="py-20 bg-white border-t border-[#E8E4DA]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mb-12 space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-[#C85A32]">
+            Local Timing Heuristics
+          </span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-semibold tracking-tight text-[#141312]">
+            The exact same place feels completely different at different hours.
+          </h2>
+          <p class="text-xs sm:text-sm text-[#75726C] leading-relaxed">
+            Pune’s charm is all about timing. Here is how the city breathes across the day so you can choose the right departure window.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="p-6 rounded-3xl border border-[#FEF3C7] bg-[#FFFBEB] space-y-3">
+            <span class="text-xs font-bold text-[#1A1917] font-mono">6:00 AM – 8:30 AM</span>
+            <h3 class="font-serif text-lg font-bold text-[#141312]">Early Morning Calm</h3>
+            <p class="text-xs font-serif italic text-[#C85A32]">Brisk hill air, birdsong & hot chai</p>
+            <p class="text-xs text-[#54524D] leading-relaxed">Ideal for Vetal Tekdi and Café Goodluck bun maska before the university crowds arrive.</p>
+          </div>
+
+          <div class="p-6 rounded-3xl border border-[#E8E4DA] bg-[#FDFBF7] space-y-3">
+            <span class="text-xs font-bold text-[#1A1917] font-mono">1:30 PM – 4:30 PM</span>
+            <h3 class="font-serif text-lg font-bold text-[#141312]">Afternoon Slowdown</h3>
+            <p class="text-xs font-serif italic text-[#C85A32]">Unrushed reading & shaded cool</p>
+            <p class="text-xs text-[#54524D] leading-relaxed">Indie book cafés like Pagdandi and Pataleshwar Caves are at their most tranquil and meditative.</p>
+          </div>
+
+          <div class="p-6 rounded-3xl border border-[#FCECE6] bg-[#FDF2F2] space-y-3">
+            <span class="text-xs font-bold text-[#1A1917] font-mono">4:45 PM – 6:30 PM</span>
+            <h3 class="font-serif text-lg font-bold text-[#141312]">The Golden Hour Shift</h3>
+            <p class="text-xs font-serif italic text-[#C85A32]">Long shadows & street buzz</p>
+            <p class="text-xs text-[#54524D] leading-relaxed">Golden light over FC Road’s canopy. Street stalls open up, aromas of roasted corn and dosa fill the air.</p>
+          </div>
+
+          <div class="p-6 rounded-3xl border border-[#B9E4D0] bg-[#E3EDE8] space-y-3">
+            <span class="text-xs font-bold text-[#1A1917] font-mono">7:00 PM – 10:30 PM</span>
+            <h3 class="font-serif text-lg font-bold text-[#141312]">Evening Social Peak</h3>
+            <p class="text-xs font-serif italic text-[#C85A32]">Vibrant youth energy & courtyard dining</p>
+            <p class="text-xs text-[#54524D] leading-relaxed">Goodluck Chowk and Koregaon Park patios buzz. Factor in 15–20 min waiting times on weekends.</p>
+          </div>
+        </div>
+
+        <p class="text-[11px] text-[#75726C] italic text-center mt-8">
+          * General planning heuristics based on historical footfall, not guarantees.
+        </p>
+      </div>
+    </section>
+
+    <!-- LIVE SEARCH & FILTER CATALOG -->
+    <section class="py-20 bg-[#FBF9F5] border-t border-[#E8E4DA]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        
+        <div class="max-w-2xl space-y-2">
+          <span class="text-xs font-semibold uppercase tracking-wider text-[#C85A32]">
+            Comprehensive City Catalog
+          </span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-bold tracking-tight text-[#141312]">
+            Filter all 29 verified places.
+          </h2>
+          <p class="text-xs sm:text-sm text-[#75726C]">
+            Search by keyword, neighborhood, category, or budget bracket.
+          </p>
+        </div>
+
+        <!-- Filter Box -->
+        <div class="bg-white rounded-3xl p-6 border border-[#E8E4DA] shadow-soft-sm space-y-4">
+          <input
+            type="text"
+            id="catalogSearch"
+            oninput="handleCatalogFilterChange()"
+            placeholder="Search by name, dish, street, or vibe (e.g. SPDP, bun maska, sunset, books)..."
+            class="w-full px-5 py-3 rounded-full border border-[#E8E4DA] bg-[#FBF9F5] text-xs text-[#1A1917] placeholder-[#9E9A92] focus:outline-none focus:border-[#1E3A2F]"
+          />
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+            <div>
+              <label class="text-[11px] font-semibold text-[#75726C] block mb-1">Category</label>
+              <select id="catalogCatSelect" onchange="handleCatalogFilterChange()" class="w-full px-3 py-2 rounded-xl border border-[#E8E4DA] bg-[#FBF9F5]">
+                <option value="all">All Categories</option>
+                <option value="Cafés & Bakeries">Cafés & Bakeries</option>
+                <option value="Iconic Eateries">Iconic Eateries</option>
+                <option value="Bars & Nightlife">Bars & Nightlife</option>
+                <option value="Nature & Hills">Nature & Hills</option>
+                <option value="Heritage & Culture">Heritage & Culture</option>
+                <option value="Quiet & Books">Quiet & Books</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-[11px] font-semibold text-[#75726C] block mb-1">Neighborhood</label>
+              <select id="catalogAreaSelect" onchange="handleCatalogFilterChange()" class="w-full px-3 py-2 rounded-xl border border-[#E8E4DA] bg-[#FBF9F5]">
+                <option value="all">All Neighborhoods</option>
+                <option value="FC Road & Deccan">FC Road & Deccan</option>
+                <option value="JM Road">JM Road</option>
+                <option value="Koregaon Park">Koregaon Park</option>
+                <option value="Kalyani Nagar">Kalyani Nagar</option>
+                <option value="Baner & Balewadi">Baner & Balewadi</option>
+                <option value="Camp">Camp</option>
+                <option value="Kothrud">Kothrud</option>
+                <option value="Pashan & Hills">Pashan & Hills</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="text-[11px] font-semibold text-[#75726C] block mb-1">Price Tier</label>
+              <select id="catalogPriceSelect" onchange="handleCatalogFilterChange()" class="w-full px-3 py-2 rounded-xl border border-[#E8E4DA] bg-[#FBF9F5]">
+                <option value="all">Any Price</option>
+                <option value="under-200">Pocket Friendly (Under ₹200)</option>
+                <option value="200-500">Casual Café (₹200 – ₹500)</option>
+                <option value="500-1000">Gourmet / Bistro (₹500 – ₹1,000)</option>
+                <option value="1000-plus">Premium / Craft (₹1,000+)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-[#75726C] pt-2 border-t border-[#F5F0E6]">
+            <span id="catalogCount">Showing 29 verified places</span>
+            <button onclick="resetCatalogFilters()" class="text-[#C85A32] font-semibold hover:underline">Reset Filters</button>
+          </div>
+        </div>
+
+        <div id="catalogGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Injected by JS -->
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= EDITORIAL FOOTER ================= -->
+  <footer class="bg-[#141312] text-[#E8E6E1] pt-16 pb-12 border-t border-[#2A2926]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#2A2926]">
+        
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-full bg-[#1E3A2F] text-[#FBF9F5] flex items-center justify-center font-serif text-sm font-bold">P</span>
+            <span class="font-serif text-2xl font-bold tracking-tight text-[#FBF9F5]">
+              Pune<span class="text-[#C85A32]">Pulse</span>
+            </span>
+          </div>
+          <p class="font-serif italic text-lg text-[#C7C4BC]">
+            “Find your kind of Pune. Less planning. More living.”
+          </p>
+          <p class="text-xs text-[#9E9A92] leading-relaxed max-w-sm">
+            An independent, premium city guide and outing planning engine crafted for college students, young professionals, and urban explorers. Built to make exploring Pune effortless, honest, and unforgettable.
+          </p>
+          <div class="flex items-center gap-2 text-[11px] text-[#A0EAC9] bg-[#1E3A2F]/60 px-3 py-1.5 rounded-full w-fit">
+            <span>🛡 Independent & Unbiased — No Paid Placements</span>
+          </div>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-[#FBF9F5]">Explore Areas</h4>
+          <ul class="space-y-2 text-xs text-[#9E9A92]">
+            <li><a href="#areas" class="hover:text-white">FC Road & Deccan (Core)</a></li>
+            <li><a href="#areas" class="hover:text-white">JM Road & Riverside</a></li>
+            <li><a href="#areas" class="hover:text-white">Koregaon Park & Lanes</a></li>
+            <li><a href="#areas" class="hover:text-white">Kalyani Nagar</a></li>
+            <li><a href="#areas" class="hover:text-white">Kothrud & Hills</a></li>
+            <li><a href="#areas" class="hover:text-white">Camp & MG Road</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-[#FBF9F5]">By Mood</h4>
+          <ul class="space-y-2 text-xs text-[#9E9A92]">
+            <li><a href="#moods" class="hover:text-white">Slow Morning & Chai</a></li>
+            <li><a href="#moods" class="hover:text-white">Coffee & Deep Talks</a></li>
+            <li><a href="#moods" class="hover:text-white">Date Night & Courtyards</a></li>
+            <li><a href="#moods" class="hover:text-white">Friends & Food Runs</a></li>
+            <li><a href="#moods" class="hover:text-white">Nature Ridges</a></li>
+            <li><a href="#moods" class="hover:text-white">Solo Sanctuary</a></li>
+          </ul>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="text-xs font-semibold uppercase tracking-wider text-[#FBF9F5]">Data & Integrity</h4>
+          <ul class="space-y-2 text-xs text-[#9E9A92]">
+            <li><span class="text-white">Data Accuracy Policy</span></li>
+            <li><span class="text-[#9E9A92]">Traffic Guidance Heuristics</span></li>
+            <li><span class="text-[#9E9A92]">Local Device Privacy (No trackers)</span></li>
+            <li><span class="text-[#9E9A92]">Contact Editorial Team</span></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-[#75726C] gap-4">
+        <p>© 2026 PunePulse. Crafted with pride for Maharashtra, India.</p>
+        <p class="text-[11px] text-[#9E9A92]">Travel times & budgets are verified heuristics. Always check live conditions before leaving.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= PLACE DETAIL MODAL ================= -->
+  <div id="placeModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6">
+    <div id="modalCard" class="relative bg-[#FBF9F5] w-full max-w-3xl rounded-3xl overflow-hidden shadow-2xl border border-[#E8E4DA] my-8 max-h-[90vh] flex flex-col">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC & APP ENGINE -->
+  <script>
+    // ================= DATASETS =================
+    const PUNE_PLACES = [
+  {
+    "id": "vaishali-fc-road",
+    "slug": "vaishali-fc-road",
+    "name": "Vaishali",
+    "category": "Iconic Eateries",
+    "subcategory": "South Indian & Heritage Garden",
+    "neighborhood": "FC Road & Deccan",
+    "address": "1218/1, Fergusson College Road, Shivajinagar, Pune",
+    "latitude": 18.5222,
+    "longitude": 73.8415,
+    "shortDescription": "The undisputed epicentre of Pune’s college culture, serving steaming filter coffee, SPDP, and crisp dosas under leafy trees.",
+    "fullDescription": "Operating since 1971, Vaishali is more than a restaurant — it is an emotional landmark on Fergusson College Road. Known for its breezy garden courtyard, quick-moving waitstaff in crisp uniforms, and lively conversations spanning literature, politics, and startup ideas.",
+    "whyVisit": "The gold-standard Pune institution where four generations have gathered for Sunday morning filter coffee and Sev Potato Dahi Puri (SPDP).",
+    "imageUrl": "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 120,
+    "priceMax": 350,
+    "priceBasis": "per person",
+    "averageVisitCost": 220,
+    "bestFor": [
+      "Breakfast meetings",
+      "Post-college chill",
+      "Iconic filter coffee",
+      "SPDP lovers"
+    ],
+    "moods": [
+      "Slow morning",
+      "Coffee and conversations",
+      "Friends and chaos",
+      "Food hunt"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 50,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Arrive before 8:30 AM for a quiet morning paper and coffee, or between 4:00 PM and 5:30 PM before the evening queue begins.",
+    "openingHours": "7:00 AM – 11:00 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-15",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Chhatrapati Sambhaji Udyan Metro (800m) / FC Road Bus Stop"
+    },
+    "amenities": [
+      "Outdoor Garden Seating",
+      "Pure Vegetarian",
+      "Takeaway Counter"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:30 AM – 11:00 AM & 6:00 PM – 9:30 PM",
+      "vibe": "High-energy, intellectual, nostalgic",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Legendary",
+      "Budget-friendly",
+      "Student Favorite",
+      "Breakfast"
+    ],
+    "mapQuery": "Vaishali Restaurant FC Road Pune",
+    "isTrending": true
+  },
+  {
+    "id": "cafe-goodluck-deccan",
+    "slug": "cafe-goodluck-deccan",
+    "name": "Café Goodluck",
+    "category": "Iconic Eateries",
+    "subcategory": "Irani Café & Heritage Diner",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Fergusson College Road, Near Goodluck Chowk, Deccan Gymkhana, Pune",
+    "latitude": 18.5173,
+    "longitude": 73.8412,
+    "shortDescription": "One of Pune’s oldest Irani cafés (est. 1935), famous for golden bun maska, piping-hot Irani chai, and spicy mutton kheema.",
+    "fullDescription": "Goodluck Chowk was named after this very corner restaurant. With marble-topped tables, bentwood chairs, and mirrors dating back to the British era, Café Goodluck serves actors, filmmakers from FTII, students, and morning walkers alike.",
+    "whyVisit": "Dipping warm, buttery bun maska into sweet Irani chai while watching the bustling Deccan traffic from a vintage corner booth.",
+    "imageUrl": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 80,
+    "priceMax": 300,
+    "priceBasis": "per person",
+    "averageVisitCost": 180,
+    "bestFor": [
+      "Early breakfast",
+      "Irani Chai dip",
+      "Late evening snacks",
+      "Solo reading with tea"
+    ],
+    "moods": [
+      "Slow morning",
+      "Coffee and conversations",
+      "Food hunt",
+      "Solo reset"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 45,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "morning",
+      "afternoon",
+      "late-night"
+    ],
+    "bestTimeNote": "Early mornings (7:00 AM – 8:30 AM) have minimal waiting and the freshest batch of buns.",
+    "openingHours": "7:30 AM – 11:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-20",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Deccan Gymkhana Metro (400m)"
+    },
+    "amenities": [
+      "Heritage Ambiance",
+      "Fast Service",
+      "Cash & UPI accepted"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:00 AM – 10:30 AM & 5:00 PM – 8:00 PM",
+      "vibe": "Classic Irani, fast-paced, charmingly chaotic",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Heritage 1935",
+      "Under ₹200",
+      "Iconic",
+      "Irani Chai"
+    ],
+    "mapQuery": "Cafe Goodluck Deccan Pune",
+    "isTrending": true
+  },
+  {
+    "id": "vetal-tekdi-hills",
+    "slug": "vetal-tekdi-hills",
+    "name": "Vetal Tekdi (ARAI Hill)",
+    "category": "Nature & Hills",
+    "subcategory": "Scenic Hill Viewpoint & Walking Trail",
+    "neighborhood": "Pashan & Hills",
+    "address": "Vetal Hill Ridge, Off Senapati Bapat Road / Kothrud, Pune",
+    "latitude": 18.5284,
+    "longitude": 73.8182,
+    "shortDescription": "The highest natural peak within Pune city limits (2,600 ft), offering 360-degree city panoramas, serene quarry walks, and birdsong.",
+    "fullDescription": "Vetal Tekdi is the green soul of western Pune. Loved by birdwatchers, trail runners, and couples seeking sunset solitude. The trail past the Automotive Research Association (ARAI) leads to an abandoned stone quarry that turns emerald during monsoons.",
+    "whyVisit": "Watching the morning mist lift over the Western Ghats and Deccan rooftops without leaving the city boundary.",
+    "imageUrl": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 0,
+    "priceMax": 0,
+    "priceBasis": "free",
+    "averageVisitCost": 0,
+    "bestFor": [
+      "Golden hour photography",
+      "Brisk morning hikes",
+      "Solo quiet time",
+      "Nature reset"
+    ],
+    "moods": [
+      "Slow morning",
+      "Nature escape",
+      "Solo reset",
+      "Date night",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "outdoor",
+    "estimatedVisitDurationMinutes": 90,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Sunrise (6:00 AM – 7:30 AM) for pleasant cool breeze and birds, or 5:15 PM for golden-hour views.",
+    "openingHours": "Open 24/7 (Recommended: 5:30 AM – 7:30 PM)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-10",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Paud Road / SB Road bus connections"
+    },
+    "amenities": [
+      "Walking Trails",
+      "Panoramic Viewpoints",
+      "Pet Friendly",
+      "Free Entry"
+    ],
+    "crowdProfile": {
+      "peakHours": "6:30 AM – 8:30 AM & 5:30 PM – 6:45 PM",
+      "vibe": "Peaceful, refreshing, open air",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Nature",
+      "Zero Cost",
+      "Sunset pick",
+      "Hidden gem"
+    ],
+    "mapQuery": "Vetal Tekdi Pune Hill",
+    "isHiddenGem": true,
+    "isTrending": true
+  },
+  {
+    "id": "wadeshwar-fc-road",
+    "slug": "wadeshwar-fc-road",
+    "name": "Wadeshwar",
+    "category": "Iconic Eateries",
+    "subcategory": "South Indian & Maharashtrian Tiffins",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Near Deccan Gymkhana, FC Road, Shivajinagar, Pune",
+    "latitude": 18.5195,
+    "longitude": 73.8413,
+    "shortDescription": "Famous for its molten Ghee Roast Molagapodi Idlis, piping hot Appams with coconut stew, and swift outdoor counters.",
+    "fullDescription": "Wadeshwar is the modern counterpart to Pune’s heritage tiffin rooms. It combines impeccable hygienic kitchen standards with rich South Indian breakfast comfort foods. A regular morning fueling station for university professors, cyclists, and college groups.",
+    "whyVisit": "Tender appams with sweet coconut milk or crunchy Ghee Podi Idlis paired with cold badam milk.",
+    "imageUrl": "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 100,
+    "priceMax": 280,
+    "priceBasis": "per person",
+    "averageVisitCost": 190,
+    "bestFor": [
+      "Nutritious breakfast",
+      "Post-workout snacks",
+      "Quick casual catchup"
+    ],
+    "moods": [
+      "Slow morning",
+      "Coffee and conversations",
+      "Food hunt"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 40,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Between 3:30 PM and 5:00 PM for freshly steamed snacks without crowd rush.",
+    "openingHours": "7:00 AM – 11:00 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-18",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Deccan Gymkhana Metro (500m)"
+    },
+    "amenities": [
+      "Air Conditioned Hall",
+      "Quick Service Counter",
+      "Pure Vegetarian"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:30 AM – 11:00 AM & 6:30 PM – 9:00 PM",
+      "vibe": "Modern tiffin, clean, family & student blend",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "South Indian",
+      "Budget-friendly",
+      "Clean",
+      "Quick bite"
+    ],
+    "mapQuery": "Wadeshwar FC Road Pune"
+  },
+  {
+    "id": "pagdandi-books-chai-cafe",
+    "slug": "pagdandi-books-chai-cafe",
+    "name": "Pagdandi Books Chai Café",
+    "category": "Quiet & Books",
+    "subcategory": "Indie Bookstore & Quiet Chai Sanctuary",
+    "neighborhood": "Baner & Balewadi",
+    "address": "Shop No. 2, Regent Plaza, Baner Pashan Link Road, Baner, Pune",
+    "latitude": 18.5532,
+    "longitude": 73.7885,
+    "shortDescription": "A sanctuary for bibliophiles featuring community bookshelves, artisanal herbal teas, warm brownies, and mattress floor seating.",
+    "fullDescription": "Founded with an ethos of community sharing and slow living, Pagdandi is a breath of fresh air. You can read without purchase obligations, browse independent graphic novels, sip organic kahwa, or play acoustic board games.",
+    "whyVisit": "Spending three unhurried hours curled up with a book and ginger-lemongrass chai without anyone rushing you to clear the table.",
+    "imageUrl": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 120,
+    "priceMax": 300,
+    "priceBasis": "per person",
+    "averageVisitCost": 200,
+    "bestFor": [
+      "Solo reading",
+      "Deep 1-on-1 talks",
+      "Creative writing",
+      "Indie book shopping"
+    ],
+    "moods": [
+      "Slow morning",
+      "Coffee and conversations",
+      "Solo reset",
+      "Art and culture"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 100,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Weekday afternoons (1:00 PM – 4:30 PM) are exceptionally quiet and meditative.",
+    "openingHours": "10:30 AM – 10:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-12",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Baner-Pashan Link Road Bus Stop"
+    },
+    "amenities": [
+      "Free Reading Library",
+      "Wi-Fi",
+      "Board Games",
+      "Artisanal Teas",
+      "Eco-friendly Products"
+    ],
+    "crowdProfile": {
+      "peakHours": "5:30 PM – 8:30 PM",
+      "vibe": "Cerebral, intimate, barefoot comfort",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Hidden gem",
+      "Books & Chai",
+      "Solo sanctuary",
+      "Student friendly"
+    ],
+    "mapQuery": "Pagdandi Bookstore Cafe Baner Pune",
+    "isHiddenGem": true
+  },
+  {
+    "id": "pataleshwar-cave-temple",
+    "slug": "pataleshwar-cave-temple",
+    "name": "Pataleshwar Cave Temple",
+    "category": "Heritage & Culture",
+    "subcategory": "8th-Century Rock-Cut Monolithic Shrine",
+    "neighborhood": "JM Road",
+    "address": "Jangali Maharaj Road, Shivajinagar, Pune",
+    "latitude": 18.5288,
+    "longitude": 73.8504,
+    "shortDescription": "An astonishing 8th-century monolithic basalt rock-cut cave hidden just beneath street level amidst Jangali Maharaj Road’s greenery.",
+    "fullDescription": "Carved out of single massive basalt rock during the Rashtrakuta dynasty, Pataleshwar feels like Ellora nestled in central Pune. Its massive rock pillars, circular Nandi mandapa, and cool subterranean temperature offer instant respite from city heat.",
+    "whyVisit": "Stepping from the bustling honks of JM Road into 1,200 years of meditative basalt silence in just ten footsteps.",
+    "imageUrl": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 0,
+    "priceMax": 0,
+    "priceBasis": "free",
+    "averageVisitCost": 0,
+    "bestFor": [
+      "Architectural appreciation",
+      "Quiet meditation",
+      "Heritage walking tours",
+      "Historic photography"
+    ],
+    "moods": [
+      "Slow morning",
+      "Art and culture",
+      "Solo reset",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 45,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Morning sunlight hits the rock pillars between 8:30 AM and 10:00 AM, creating ethereal shadows.",
+    "openingHours": "8:30 AM – 5:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-08-30",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Shivajinagar Metro (900m) / JM Road Bus Stop"
+    },
+    "amenities": [
+      "Garden Lawns",
+      "Archaeological Survey of India Site",
+      "Free Entry"
+    ],
+    "crowdProfile": {
+      "peakHours": "11:00 AM – 1:00 PM & 4:00 PM – 5:15 PM",
+      "vibe": "Spiritual, historic, contemplative",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Heritage",
+      "Zero Cost",
+      "Historic",
+      "Hidden gem"
+    ],
+    "mapQuery": "Pataleshwar Cave Temple JM Road Pune",
+    "isHiddenGem": true
+  },
+  {
+    "id": "german-bakery-kp",
+    "slug": "german-bakery-kp",
+    "name": "German Bakery",
+    "category": "Cafés & Bakeries",
+    "subcategory": "Bohemian Garden Café & Patisserie",
+    "neighborhood": "Koregaon Park",
+    "address": "North Main Road, Ragvilas Society, Koregaon Park, Pune",
+    "latitude": 18.5367,
+    "longitude": 73.8938,
+    "shortDescription": "Pune’s most legendary bohemian garden café, renowned for fresh apple strudel, European breakfast, and leafy outdoor people-watching.",
+    "fullDescription": "Set on North Main Road in Koregaon Park, German Bakery has been an iconic hub since the 1980s. With its vibrant canopy, international travelers, artists, and sprawling cold coffee menu, it exudes a timeless Pune cosmopolitan energy.",
+    "whyVisit": "Sipping an iced americano and biting into a warm cinnamon bun surrounded by old banyan trees in the heart of KP.",
+    "imageUrl": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 250,
+    "priceMax": 650,
+    "priceBasis": "per person",
+    "averageVisitCost": 400,
+    "bestFor": [
+      "Date afternoons",
+      "Long friendly discussions",
+      "Dessert cravings",
+      "Weekend brunch"
+    ],
+    "moods": [
+      "Coffee and conversations",
+      "Date night",
+      "Friends and chaos",
+      "Food hunt"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 75,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "Late mornings around 10:30 AM for breakfast, or twilight (6:30 PM) when outdoor fairy lights illuminate.",
+    "openingHours": "8:00 AM – 11:45 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-22",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "valet-only",
+      "nearestMetroOrBus": "Bund Garden Metro (1.8km) / KP Auto Stand"
+    },
+    "amenities": [
+      "Outdoor Pet Friendly Deck",
+      "Wi-Fi",
+      "Artisan Bakery",
+      "Dessert Counter"
+    ],
+    "crowdProfile": {
+      "peakHours": "11:00 AM – 1:00 PM & 7:00 PM – 10:00 PM",
+      "vibe": "Cosmopolitan, relaxed, artsy",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "Iconic KP",
+      "Date Spot",
+      "Outdoor Seating",
+      "Desserts"
+    ],
+    "mapQuery": "German Bakery Koregaon Park Pune",
+    "isTrending": true
+  },
+  {
+    "id": "le-plaisir-prabhat-road",
+    "slug": "le-plaisir-prabhat-road",
+    "name": "Le Plaisir",
+    "category": "Cafés & Bakeries",
+    "subcategory": "Artisanal French Bistro & Dessert Atelier",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Rajkamal Survey No. 4/33, Prabhat Road, Lane 6, Erandwane, Pune",
+    "latitude": 18.5085,
+    "longitude": 73.8344,
+    "shortDescription": "Chef Siddharth Mahadik’s acclaimed bistro, celebrated for exquisite mac & cheese, roast chicken sandwiches, and espresso panna cotta.",
+    "fullDescription": "Tucked into the leafy, prestigious residential lanes of Prabhat Road, Le Plaisir proves Pune’s high-end culinary maturity. Blackboard handwritten menus, open kitchen aromas, and European culinary precision make it a celebrated benchmark.",
+    "whyVisit": "The hazelnut mousse, freshly baked savory crepes, and warm, unpretentious hospitality.",
+    "imageUrl": "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 450,
+    "priceMax": 1100,
+    "priceBasis": "per person",
+    "averageVisitCost": 650,
+    "bestFor": [
+      "Intimate dates",
+      "Celebratory dinners",
+      "Gourmet dessert fixes",
+      "Culinary treats"
+    ],
+    "moods": [
+      "Date night",
+      "Coffee and conversations",
+      "Food hunt"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 75,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Arrive at 12:15 PM for lunch or 6:45 PM for dinner to avoid waiting times.",
+    "openingHours": "9:00 AM – 10:30 PM (Closed Mondays)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-14",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Garware College Metro (700m)"
+    },
+    "amenities": [
+      "Artisanal Desserts",
+      "Gourmet Coffee",
+      "Chic Minimal Decor"
+    ],
+    "crowdProfile": {
+      "peakHours": "1:00 PM – 2:30 PM & 8:00 PM – 9:45 PM",
+      "vibe": "Sophisticated, food-first, romantic",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "Gourmet",
+      "Date Night",
+      "Bistro",
+      "Must Visit"
+    ],
+    "mapQuery": "Le Plaisir Prabhat Road Pune",
+    "isTrending": true
+  },
+  {
+    "id": "toit-brewery-kalyani-nagar",
+    "slug": "toit-brewery-kalyani-nagar",
+    "name": "Toit Pune",
+    "category": "Bars & Nightlife",
+    "subcategory": "Microbrewery & Woodfired Kitchen",
+    "neighborhood": "Kalyani Nagar",
+    "address": "Near Bishop’s School, Metro Station Rd, Kalyani Nagar, Pune",
+    "latitude": 18.5492,
+    "longitude": 73.9015,
+    "shortDescription": "One of Pune’s finest microbreweries, serving award-winning craft beers like Tintin Toit and Basmati Blonde in an airy industrial hangar.",
+    "fullDescription": "Set inside a beautifully repurposed glass and steel space surrounded by trees, Toit brings genuine craft brewing heritage. Known for honest brews, sourdough wood-fired pizzas, baked nachos, and a welcoming dog-friendly outdoor vibe.",
+    "whyVisit": "Freshly poured craft beer flights paired with tartufo pizza on a cool breezy Pune evening.",
+    "imageUrl": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 700,
+    "priceMax": 1600,
+    "priceBasis": "per person",
+    "averageVisitCost": 950,
+    "bestFor": [
+      "Weekend celebrations",
+      "Craft beer lovers",
+      "Group catch-ups",
+      "Evening social energy"
+    ],
+    "moods": [
+      "Friends and chaos",
+      "Nightlife",
+      "Food hunt",
+      "Date night"
+    ],
+    "suitableGroupSizes": [
+      "couple",
+      "friends-2-3",
+      "group-4-6",
+      "large-group"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 120,
+    "recommendedVisitWindows": [
+      "afternoon",
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "Sundays at 4:30 PM for a relaxed afternoon beer before the dinner rush.",
+    "openingHours": "12:00 PM – 1:00 AM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-18",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "valet-only",
+      "nearestMetroOrBus": "Kalyani Nagar Metro (300m)"
+    },
+    "amenities": [
+      "Microbrewery",
+      "Woodfired Oven",
+      "Pet Friendly",
+      "Valet Parking",
+      "Wheelchair Accessible"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:30 PM – 11:30 PM",
+      "vibe": "Buzzy, upscale casual, celebratory",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Craft Beer",
+      "Nightlife",
+      "Pet Friendly",
+      "Trending"
+    ],
+    "mapQuery": "Toit Brewery Kalyani Nagar Pune",
+    "isTrending": true
+  },
+  {
+    "id": "kamala-nehru-park-deccan",
+    "slug": "kamala-nehru-park-deccan",
+    "name": "Kamala Nehru Park",
+    "category": "Nature & Hills",
+    "subcategory": "Urban Shaded Botanical Park & Stroll Garden",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Prabhat Road, Erandwane, Deccan, Pune",
+    "latitude": 18.5123,
+    "longitude": 73.8322,
+    "shortDescription": "A tranquil green oasis in Erandwane with jogging circuits, flowering bougainvillea, water fountains, and old rain trees.",
+    "fullDescription": "Located just minutes off Karve Road, Kamala Nehru Park is where generations of Punekars take their evening strolls. It features walking paths, children’s play zones, public art installations, and shaded stone benches for reading.",
+    "whyVisit": "Decompressing under decades-old rain trees after exploring the bustling cafés of FC Road.",
+    "imageUrl": "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 0,
+    "priceMax": 10,
+    "priceBasis": "entry fee",
+    "averageVisitCost": 5,
+    "bestFor": [
+      "Evening walks",
+      "Quiet reading on benches",
+      "Low-cost dates",
+      "Mindful unwind"
+    ],
+    "moods": [
+      "Slow morning",
+      "Solo reset",
+      "Date night",
+      "Nature escape"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "outdoor",
+    "estimatedVisitDurationMinutes": 45,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "morning",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "5:00 PM – 6:30 PM when the breeze rustles the trees and the city heat fades.",
+    "openingHours": "6:00 AM – 11:00 AM & 4:00 PM – 8:30 PM",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-01",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Garware College Metro (600m)"
+    },
+    "amenities": [
+      "Jogging Track",
+      "Benches",
+      "Restrooms",
+      "Drinking Water"
+    ],
+    "crowdProfile": {
+      "peakHours": "6:30 AM – 8:30 AM & 5:30 PM – 7:30 PM",
+      "vibe": "Peaceful, neighborhood charm, gentle",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Nature",
+      "Zero Cost",
+      "Walking Route",
+      "Peaceful"
+    ],
+    "mapQuery": "Kamala Nehru Park Prabhat Road Pune"
+  },
+  {
+    "id": "marz-o-rin-camp",
+    "slug": "marz-o-rin-camp",
+    "name": "Marz-O-Rin",
+    "category": "Iconic Eateries",
+    "subcategory": "Parsi Bakery & Heritage Deli (Est. 1908)",
+    "neighborhood": "Camp",
+    "address": "6, Bakthiar Plaza, MG Road, Camp, Pune",
+    "latitude": 18.5168,
+    "longitude": 73.8776,
+    "shortDescription": "Pune’s 118-year-old bakery housed in an Anglo-Indian heritage villa, serving legendary chicken sandwiches, plum cake, and cold coffee.",
+    "fullDescription": "Established in 1908 on Main Street (MG Road), Marz-O-Rin features wooden rafters, an open-air balcony overlooking colonial Camp, and budget-friendly sandwiches made with house-baked soft bread and secret mayo recipes.",
+    "whyVisit": "Sitting on the first-floor wooden balcony with a ₹70 brown bread chicken sandwich and cold coffee watching the vintage MG Road life.",
+    "imageUrl": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 80,
+    "priceMax": 220,
+    "priceBasis": "per person",
+    "averageVisitCost": 140,
+    "bestFor": [
+      "Budget food hunt",
+      "Heritage walk pitstop",
+      "Quick balcony snack",
+      "Student savings"
+    ],
+    "moods": [
+      "Food hunt",
+      "Slow morning",
+      "Solo reset",
+      "Friends and chaos"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 40,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Arrive at 11:30 AM or 3:30 PM to grab the coveted balcony table.",
+    "openingHours": "9:00 AM – 9:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-05",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Pune Station (2km) / MG Road Bus Stop"
+    },
+    "amenities": [
+      "Heritage Balcony",
+      "Bakery Counter",
+      "Vegetarian & Non-Veg Sandwiches"
+    ],
+    "crowdProfile": {
+      "peakHours": "12:00 PM – 2:00 PM & 5:00 PM – 8:00 PM",
+      "vibe": "Nostalgic, colonial charm, buzzing",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "Heritage 1908",
+      "Under ₹200",
+      "Budget",
+      "Iconic"
+    ],
+    "mapQuery": "Marz O Rin MG Road Camp Pune",
+    "isTrending": false,
+    "isHiddenGem": true
+  },
+  {
+    "id": "chitale-bandhu-deccan",
+    "slug": "chitale-bandhu-deccan",
+    "name": "Chitale Bandhu Mithaiwale",
+    "category": "Iconic Eateries",
+    "subcategory": "Legendary Puneri Snack & Sweets Treasury",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Near Deccan Gymkhana, Bajirao Road / Deccan Branches, Pune",
+    "latitude": 18.5148,
+    "longitude": 73.8488,
+    "shortDescription": "The sacred heart of authentic Puneri snacks, world-famous for its spiral spicy Bakarwadi, mango Amba Barfi, and Poha chivda.",
+    "fullDescription": "Founded in 1950, Chitale Bandhu is an institution that defines Pune food pride. Their signature Bakarwadi — crispy, coiled, and burst with sweet-tangy-spicy masala — sells thousands of kilograms daily. A must-visit culinary pilgrimage.",
+    "whyVisit": "Sampling fresh, warm Bakarwadi straight from packaging and authentic Amba Barfi.",
+    "imageUrl": "https://images.unsplash.com/photo-1599488615731-7e5c2823ff28?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 100,
+    "priceMax": 300,
+    "priceBasis": "per person",
+    "averageVisitCost": 180,
+    "bestFor": [
+      "Food souvenirs",
+      "Iconic snack hunt",
+      "Puneri culture experience"
+    ],
+    "moods": [
+      "Food hunt",
+      "Art and culture",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 30,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Morning hours (10:00 AM – 12:00 PM) have shortest queues for fresh Bakarwadi cartons.",
+    "openingHours": "9:00 AM – 1:00 PM & 4:00 PM – 8:30 PM (Typical Pune afternoon closure observed)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-11",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Deccan Gymkhana Metro"
+    },
+    "amenities": [
+      "Takeaway Specialists",
+      "Gift Packing",
+      "Authentic Puneri Sweets"
+    ],
+    "crowdProfile": {
+      "peakHours": "11:00 AM – 1:00 PM & 6:00 PM – 8:00 PM",
+      "vibe": "Punctual, bustling, quintessentially Puneri",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Bakarwadi",
+      "Iconic Pune",
+      "Snacks",
+      "Legendary"
+    ],
+    "mapQuery": "Chitale Bandhu Deccan Pune"
+  },
+  {
+    "id": "shaniwar-wada-kasba",
+    "slug": "shaniwar-wada-kasba",
+    "name": "Shaniwar Wada",
+    "category": "Heritage & Culture",
+    "subcategory": "18th-Century Peshwa Fortress Palace",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Shaniwar Peth, Near Bajirao Road, Old Pune",
+    "latitude": 18.5196,
+    "longitude": 73.8553,
+    "shortDescription": "The majestic seat of the Maratha Peshwas built in 1732, famous for its towering Dilli Darwaza, stone ramparts, and lotus fountains.",
+    "fullDescription": "Once a seven-story palace complex that governed territories across the subcontinent, Shaniwar Wada remains the dramatic emblem of Pune’s Maratha history. Walk through massive iron-spiked teak gates, gaze across the foundations of the Hazari Karanje fountain, and climb the ramparts at dusk.",
+    "whyVisit": "Experiencing the grandeur and historic intrigue of the Maratha Empire right at the edge of Old Pune’s Peths.",
+    "imageUrl": "https://images.unsplash.com/photo-1590050752117-238cb0fb12b1?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 25,
+    "priceMax": 50,
+    "priceBasis": "entry fee",
+    "averageVisitCost": 35,
+    "bestFor": [
+      "History exploration",
+      "Historic architecture",
+      "Walking with friends",
+      "Photography"
+    ],
+    "moods": [
+      "Art and culture",
+      "Friends and chaos",
+      "Slow morning",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6",
+      "large-group"
+    ],
+    "indoorOutdoor": "outdoor",
+    "estimatedVisitDurationMinutes": 75,
+    "recommendedVisitWindows": [
+      "morning",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Late afternoon (4:00 PM – 5:30 PM) when the fortress walls cast long shadows and the light turns golden.",
+    "openingHours": "9:30 AM – 5:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-02",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Mandai Metro (700m) / PMC Bus Station"
+    },
+    "amenities": [
+      "Ticket Counter",
+      "Historical Information Boards",
+      "Public Restrooms"
+    ],
+    "crowdProfile": {
+      "peakHours": "11:00 AM – 3:30 PM",
+      "vibe": "Historic, monumental, awe-inspiring",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "Heritage",
+      "Historic Fort",
+      "Budget-friendly",
+      "Architecture"
+    ],
+    "mapQuery": "Shaniwar Wada Pune"
+  },
+  {
+    "id": "elephant-and-co-kalyani-nagar",
+    "slug": "elephant-and-co-kalyani-nagar",
+    "name": "Elephant & Co. (ECO)",
+    "category": "Bars & Nightlife",
+    "subcategory": "Neighborhood Gastropub & Open Courtyard",
+    "neighborhood": "Kalyani Nagar",
+    "address": "Dhole Patil Rd / Kalyani Nagar, Pune",
+    "latitude": 18.5463,
+    "longitude": 73.9038,
+    "shortDescription": "Beloved neighborhood bar known for gin cocktails, playful comfort food, canine visitors, and welcoming community vibes.",
+    "fullDescription": "ECO redefined Pune’s casual drinking culture. With warm string lights, rustic wooden benches, lush potted palms, and craft botanical cocktails, it is the ideal spot where friends catch up without pretentious dress codes.",
+    "whyVisit": "Sipping craft gin infusions under string lights while petting friendly golden retrievers in the breezy outdoor deck.",
+    "imageUrl": "https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 600,
+    "priceMax": 1400,
+    "priceBasis": "per person",
+    "averageVisitCost": 850,
+    "bestFor": [
+      "After-work drinks",
+      "Casual date nights",
+      "Dog lovers",
+      "Weekend buzz"
+    ],
+    "moods": [
+      "Nightlife",
+      "Friends and chaos",
+      "Date night",
+      "Coffee and conversations"
+    ],
+    "suitableGroupSizes": [
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 110,
+    "recommendedVisitWindows": [
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "Arrive around 7:30 PM for easy table availability before live music or weekend crowd builds up.",
+    "openingHours": "12:00 PM – 12:30 AM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-19",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "valet-only",
+      "nearestMetroOrBus": "Kalyani Nagar Metro (500m)"
+    },
+    "amenities": [
+      "Pet Friendly Courtyard",
+      "Signature Cocktails",
+      "Outdoor Bar",
+      "Valet Parking"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:30 PM – 11:30 PM",
+      "vibe": "Social, easygoing, friendly neighborhood energy",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Cocktails",
+      "Pet Friendly",
+      "Nightlife",
+      "Kalyani Nagar"
+    ],
+    "mapQuery": "Elephant and Co Kalyani Nagar Pune",
+    "isTrending": true
+  },
+  {
+    "id": "cafe-peter-fc-road",
+    "slug": "cafe-peter-fc-road",
+    "name": "Café Peter",
+    "category": "Cafés & Bakeries",
+    "subcategory": "Korean Ramen & Study-Friendly Work Café",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Near Dnyaneshwar Paduka Chowk, FC Road, Shivajinagar, Pune",
+    "latitude": 18.5271,
+    "longitude": 73.8428,
+    "shortDescription": "Student hotspot offering Korean spicy ramen, kimchi rice, soft donuts, iced coffees, and power sockets at every booth.",
+    "fullDescription": "A favorite for university exam preparation and collaborative project discussions. Café Peter combines Korean comfort dishes with dessert donuts and reliable high-speed Wi-Fi, offering student-friendly budget combos.",
+    "whyVisit": "A piping-hot bowl of Cheese Kimchi Ramen and iced mocha while working on a laptop without feeling rushed.",
+    "imageUrl": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 180,
+    "priceMax": 420,
+    "priceBasis": "per person",
+    "averageVisitCost": 280,
+    "bestFor": [
+      "Study sessions",
+      "Laptop work",
+      "Korean ramen cravings",
+      "Casual buddy hangout"
+    ],
+    "moods": [
+      "Solo reset",
+      "Friends and chaos",
+      "Food hunt",
+      "Coffee and conversations"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 90,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "2:00 PM – 5:00 PM has plenty of charging booths and relaxed ambience.",
+    "openingHours": "8:30 AM – 11:00 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-08",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "FC Road Bus Stop"
+    },
+    "amenities": [
+      "Power Sockets at Tables",
+      "High-Speed Wi-Fi",
+      "Korean Menu",
+      "Air Conditioned"
+    ],
+    "crowdProfile": {
+      "peakHours": "1:00 PM – 3:30 PM & 6:30 PM – 9:00 PM",
+      "vibe": "Youthful, productive, college-centric",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "Study Cafe",
+      "Wi-Fi & Plugs",
+      "Budget-friendly",
+      "Korean Food"
+    ],
+    "mapQuery": "Cafe Peter FC Road Pune"
+  },
+  {
+    "id": "fc-road-shopping-street",
+    "slug": "fc-road-shopping-street",
+    "name": "FC Road Street & Hong Kong Lane",
+    "category": "Shopping & Leisure",
+    "subcategory": "Bustling Student Bazaar & Street Boutiques",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Fergusson College Road (Goodluck Chowk to Dnyaneshwar Paduka), Pune",
+    "latitude": 18.5204,
+    "longitude": 73.8418,
+    "shortDescription": "Pune’s most vibrant kilometer of budget street fashion, vintage bookstalls, phone accessories, and sizzling street food.",
+    "fullDescription": "From antique book hawkers near British Library to the kaleidoscopic alleys of Hong Kong Lane, FC Road is the lively artery of youth commerce in Pune. Browse leather bags, jewelry, college graphic tees, and second-hand classic paperbacks.",
+    "whyVisit": "The sheer electric evening buzz of bargaining for vintage books and trendy accessories followed by roadside momos.",
+    "imageUrl": "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 50,
+    "priceMax": 350,
+    "priceBasis": "per person",
+    "averageVisitCost": 150,
+    "bestFor": [
+      "Street shopping",
+      "Budget accessory hunt",
+      "Evening strolls",
+      "Book hunting"
+    ],
+    "moods": [
+      "Friends and chaos",
+      "Food hunt",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "outdoor",
+    "estimatedVisitDurationMinutes": 75,
+    "recommendedVisitWindows": [
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "4:30 PM – 7:00 PM when all street stalls are fully stocked and evening street food fires up.",
+    "openingHours": "11:00 AM – 9:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-01",
+    "dataConfidence": "high-confidence-estimate",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Deccan Gymkhana Metro / Sambhaji Udyan Metro"
+    },
+    "amenities": [
+      "Pedestrian Walkways",
+      "Street Food Carts",
+      "ATM Access"
+    ],
+    "crowdProfile": {
+      "peakHours": "5:00 PM – 8:30 PM",
+      "vibe": "Vibrant, bustling, chaotic and fun",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Street Shopping",
+      "Under ₹200",
+      "Walking Route",
+      "FC Road Vibe"
+    ],
+    "mapQuery": "Hong Kong Lane FC Road Pune"
+  },
+  {
+    "id": "bedekar-tea-stall-misal",
+    "slug": "bedekar-tea-stall-misal",
+    "name": "Bedekar Tea Stall & Misal",
+    "category": "Iconic Eateries",
+    "subcategory": "Historic Puneri Misal Shrine (Est. 1948)",
+    "neighborhood": "FC Road & Deccan",
+    "address": "418, Munjabacha Bol, Narayan Peth, Pune",
+    "latitude": 18.5178,
+    "longitude": 73.8512,
+    "shortDescription": "The bastion of authentic Puneri Misal made with spiced pohe base, sweet-tangy tarri, crispy farsan, and sliced bread.",
+    "fullDescription": "In Pune, misal is an art form, and Bedekar has been preserving the classic sweet-and-spicy Puneri style for over seven decades. Unlike Kolhapuri misal, Bedekar balances kokum, jaggery, and fiery red chili rassa, served strictly with white sliced bread.",
+    "whyVisit": "Experiencing the heritage Puneri misal culture inside the historic Narayan Peth lanes.",
+    "imageUrl": "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 80,
+    "priceMax": 180,
+    "priceBasis": "per person",
+    "averageVisitCost": 120,
+    "bestFor": [
+      "Traditional Pune breakfast",
+      "Authentic misal lovers",
+      "Old city heritage exploration"
+    ],
+    "moods": [
+      "Slow morning",
+      "Food hunt",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 40,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "morning",
+      "afternoon"
+    ],
+    "bestTimeNote": "8:30 AM – 10:30 AM before the lunch queue and before daily stock sells out.",
+    "openingHours": "7:30 AM – 6:30 PM (Closed Mondays)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-04",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Mandai Metro (900m)"
+    },
+    "amenities": [
+      "Authentic Puneri Breakfast",
+      "Heritage Setup",
+      "Quick Table Turnaround"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:30 AM – 11:30 AM",
+      "vibe": "Traditional, food-serious, local heritage",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Puneri Misal",
+      "Under ₹200",
+      "Heritage 1948",
+      "Breakfast"
+    ],
+    "mapQuery": "Bedekar Misal Narayan Peth Pune",
+    "isTrending": false,
+    "isHiddenGem": true
+  },
+  {
+    "id": "high-spirits-kp",
+    "slug": "high-spirits-kp",
+    "name": "High Spirits Café",
+    "category": "Bars & Nightlife",
+    "subcategory": "Indie Music Bar & Cult Student Gig Venue",
+    "neighborhood": "Koregaon Park",
+    "address": "35A, North Main Road, Next to The Westin, Koregaon Park, Pune",
+    "latitude": 18.5398,
+    "longitude": 73.8992,
+    "shortDescription": "Pune’s longest-running independent gig house, home to legendary Tuesday gig nights, Sunday cookouts, and electric indie energy.",
+    "fullDescription": "High Spirits is an institution in Pune’s indie music ecosystem. From hosting breakout indie bands and stand-up comics to welcoming university crowds with budget sangria pitchers and backyard barbecue cookouts, \"High\" is a rite of passage.",
+    "whyVisit": "The contagious, friendly outdoor backyard dance floor and authentic live indie band performances.",
+    "imageUrl": "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 400,
+    "priceMax": 1100,
+    "priceBasis": "per person",
+    "averageVisitCost": 650,
+    "bestFor": [
+      "Indie live gigs",
+      "Student night out",
+      "Sunday barbecue cookout",
+      "Lively socializing"
+    ],
+    "moods": [
+      "Nightlife",
+      "Friends and chaos",
+      "Art and culture"
+    ],
+    "suitableGroupSizes": [
+      "couple",
+      "friends-2-3",
+      "group-4-6",
+      "large-group"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 150,
+    "recommendedVisitWindows": [
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "8:00 PM for gigs; Sunday 1:30 PM for the famous daytime cookout.",
+    "openingHours": "7:30 PM – 1:00 AM (Tue, Thu, Fri, Sat) & 1:00 PM – 5:00 PM (Sun)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-15",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Bund Garden Metro (2km) / North Main Road Auto Stand"
+    },
+    "amenities": [
+      "Live Music Stage",
+      "Outdoor Backyard Bar",
+      "Cookout Kitchen"
+    ],
+    "crowdProfile": {
+      "peakHours": "9:30 PM – 12:30 AM",
+      "vibe": "High energy, youthful, music-first, vibrant",
+      "noiseLevel": "loud"
+    },
+    "tags": [
+      "Live Music",
+      "Cult Status",
+      "Nightlife",
+      "Indie"
+    ],
+    "mapQuery": "High Spirits Cafe Koregaon Park Pune",
+    "isTrending": true
+  },
+  {
+    "id": "pashan-lake-trail",
+    "slug": "pashan-lake-trail",
+    "name": "Pashan Lake Nature Trail",
+    "category": "Nature & Hills",
+    "subcategory": "Wetland Bird Sanctuary & Sunset Walk",
+    "neighborhood": "Pashan & Hills",
+    "address": "Near Pashan Gaon, Sus Road / Pashan, Pune",
+    "latitude": 18.5372,
+    "longitude": 73.7824,
+    "shortDescription": "A peaceful freshwater lake constructed in the British era, frequented by migratory ducks, egrets, and quiet sunset walkers.",
+    "fullDescription": "Surrounded by bamboo clusters and acacia trees, the walking perimeter of Pashan Lake offers an easy, flat natural stroll far removed from vehicular exhaust. A favorite for amateur ornithologists and quiet reflective sunset conversations.",
+    "whyVisit": "Spotting painted storks and purple moorhens silhouetted against glowing orange water at 5:45 PM.",
+    "imageUrl": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 0,
+    "priceMax": 0,
+    "priceBasis": "free",
+    "averageVisitCost": 0,
+    "bestFor": [
+      "Bird watching",
+      "Reflective walking",
+      "Sunset photography",
+      "Peaceful solitude"
+    ],
+    "moods": [
+      "Slow morning",
+      "Nature escape",
+      "Solo reset",
+      "Date night"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "outdoor",
+    "estimatedVisitDurationMinutes": 60,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "6:30 AM for winter bird watching or 5:30 PM for calm sunset reflections.",
+    "openingHours": "6:00 AM – 10:30 AM & 4:30 PM – 7:30 PM",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-08-25",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Pashan Bus Stop (Sus Road)"
+    },
+    "amenities": [
+      "Lakeside Trail",
+      "Bird Watching Platform",
+      "Free Entry"
+    ],
+    "crowdProfile": {
+      "peakHours": "5:45 PM – 7:00 PM",
+      "vibe": "Serene, natural, reflective",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Nature",
+      "Zero Cost",
+      "Birds",
+      "Hidden gem"
+    ],
+    "mapQuery": "Pashan Lake Nature Trail Pune",
+    "isHiddenGem": true
+  },
+  {
+    "id": "sujata-mastani-sadashiv-peth",
+    "slug": "sujata-mastani-sadashiv-peth",
+    "name": "Sujata Mastani",
+    "category": "Iconic Eateries",
+    "subcategory": "Pune-Original Thick Ice Cream Milkshake Drink",
+    "neighborhood": "FC Road & Deccan",
+    "address": "Sadashiv Peth & FC Road Outlets, Pune",
+    "latitude": 18.5135,
+    "longitude": 73.8522,
+    "shortDescription": "The birthplace of Mastani — Pune’s unique dessert drink combining velvety fruit milkshake topped with huge scoops of ice cream and dry fruits.",
+    "fullDescription": "Named after the legendary warrior queen Mastani, this thick concoction was invented in the 1960s in Pune. Sujata Mastani serves over twenty authentic varieties — Mango, Custard Apple (Sitaphal), Kesar Pista, and Rose Mastani remain undisputed crowd favorites.",
+    "whyVisit": "Tasting the rich, creamy Sitaphal or Alphonso Mango Mastani with silver foil and chopped cashews.",
+    "imageUrl": "https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 80,
+    "priceMax": 180,
+    "priceBasis": "per person",
+    "averageVisitCost": 110,
+    "bestFor": [
+      "After-dinner dessert",
+      "Refreshing afternoon fix",
+      "Pune food heritage"
+    ],
+    "moods": [
+      "Food hunt",
+      "Something spontaneous",
+      "Friends and chaos"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 25,
+    "recommendedVisitWindows": [
+      "afternoon",
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "Post-dinner (9:00 PM – 10:30 PM) is the classic Puneri ritual time for Mastani.",
+    "openingHours": "11:00 AM – 11:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-10",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Mandai Metro / Deccan Bus Stop"
+    },
+    "amenities": [
+      "Quick Counter",
+      "Pure Vegetarian",
+      "Takeaway Glasses"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:30 PM – 11:00 PM",
+      "vibe": "Indulgent, fast-turnaround, sweet tooth haven",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "Mastani",
+      "Dessert",
+      "Under ₹200",
+      "Original Pune"
+    ],
+    "mapQuery": "Sujata Mastani Sadashiv Peth Pune"
+  },
+  {
+    "id": "vohuman-cafe-station",
+    "slug": "vohuman-cafe-station",
+    "name": "Vohuman Café",
+    "category": "Iconic Eateries",
+    "subcategory": "Irani Breakfast & Double Cheese Omelette (Est. 1978)",
+    "neighborhood": "Camp",
+    "address": "Near Ruby Hall Clinic, Sassoon Road, Pune",
+    "latitude": 18.5312,
+    "longitude": 73.8795,
+    "shortDescription": "World-famous for gooey double cheese omelettes, toasted bun maska, and hot Irani chai served with jovial Parsi warmth.",
+    "fullDescription": "Originally located near Pune Station and now perched near Ruby Hall, Vohuman is a morning institution run with vintage passion. The double cheese omelette arrives sizzling with grated processed cheese oozing over crisp edges.",
+    "whyVisit": "The legendary double cheese toast omelette paired with strong Irani chai at 7:30 AM.",
+    "imageUrl": "https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 90,
+    "priceMax": 260,
+    "priceBasis": "per person",
+    "averageVisitCost": 170,
+    "bestFor": [
+      "Heavy power breakfast",
+      "Student morning fuel",
+      "Irani chai cravings"
+    ],
+    "moods": [
+      "Slow morning",
+      "Food hunt",
+      "Friends and chaos"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 45,
+    "recommendedVisitWindows": [
+      "early-morning",
+      "morning",
+      "afternoon"
+    ],
+    "bestTimeNote": "7:30 AM – 9:00 AM for the freshest chai and shortest waiting.",
+    "openingHours": "6:00 AM – 6:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-12",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Ruby Hall Clinic Metro (200m)"
+    },
+    "amenities": [
+      "Outdoor Porch",
+      "Famous Omelettes",
+      "Metro Proximity"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:00 AM – 11:00 AM",
+      "vibe": "High-energy, hearty, breakfast-focused",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Cheese Omelette",
+      "Under ₹200",
+      "Irani Cafe",
+      "Metro Accessible"
+    ],
+    "mapQuery": "Vohuman Cafe Sassoon Road Pune"
+  },
+  {
+    "id": "french-window-patisserie-kp",
+    "slug": "french-window-patisserie-kp",
+    "name": "The French Window Patisserie",
+    "category": "Cafés & Bakeries",
+    "subcategory": "Secluded Parisian Garden Café",
+    "neighborhood": "Koregaon Park",
+    "address": "Lane 5, Koregaon Park, Pune",
+    "latitude": 18.5358,
+    "longitude": 73.8962,
+    "shortDescription": "A dreamy, quiet white-pebbled garden café hidden in Lane 5, known for butter croissants, lemon tarts, and peaceful conversations.",
+    "fullDescription": "Step through an ivy-draped archway into an enchanting European courtyard. With white wrought-iron chairs, soft jazz, and immaculate French viennoiserie, The French Window is the antithesis of loud commercial coffee chains.",
+    "whyVisit": "The pistachio tart and almond croissant savored under bougainvillea vines in total peacefulness.",
+    "imageUrl": "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 300,
+    "priceMax": 700,
+    "priceBasis": "per person",
+    "averageVisitCost": 450,
+    "bestFor": [
+      "Intimate dates",
+      "Quiet book reading",
+      "Artisan pastry cravings",
+      "Peaceful catch-up"
+    ],
+    "moods": [
+      "Slow morning",
+      "Date night",
+      "Coffee and conversations",
+      "Solo reset"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 70,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Morning 9:30 AM – 11:30 AM for the freshest batch of baked croissants and gentle shade.",
+    "openingHours": "9:00 AM – 11:00 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-17",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Bund Garden Metro (2km) / KP Lane 5 Auto"
+    },
+    "amenities": [
+      "Garden Patio",
+      "Artisan Bakery",
+      "Pet Friendly",
+      "Peaceful Music"
+    ],
+    "crowdProfile": {
+      "peakHours": "4:30 PM – 7:30 PM",
+      "vibe": "Romantic, tranquil, European garden",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Hidden gem",
+      "Romantic",
+      "Croissants",
+      "Quiet Patio"
+    ],
+    "mapQuery": "The French Window Patisserie Koregaon Park Pune",
+    "isHiddenGem": true
+  },
+  {
+    "id": "effingut-koregaon-park",
+    "slug": "effingut-koregaon-park",
+    "name": "Effingut Brewerkz",
+    "category": "Bars & Nightlife",
+    "subcategory": "Craft Brewery & English Pub",
+    "neighborhood": "Koregaon Park",
+    "address": "End of Lane 6, Koregaon Park, Pune",
+    "latitude": 18.5377,
+    "longitude": 73.8988,
+    "shortDescription": "Pioneers of experimental craft ciders (Apple, Mango, Strawberry Cider) and English pub snacks with lively pub trivia nights.",
+    "fullDescription": "Effingut has earned a dedicated following for making craft beer genuinely fun and accessible. Their taps rotate seasonal ciders, hefeweizens, stouts, and IPAs, accompanied by rock music, live sports screenings, and hearty pub grub.",
+    "whyVisit": "The crisp, refreshing Apple Cider and Gunpowder Onion Rings on a Friday night.",
+    "imageUrl": "https://images.unsplash.com/photo-1538488881522-43214537674c?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 650,
+    "priceMax": 1500,
+    "priceBasis": "per person",
+    "averageVisitCost": 900,
+    "bestFor": [
+      "Cider enthusiasts",
+      "Trivia & pub quiz",
+      "Friends night out",
+      "Weekend banter"
+    ],
+    "moods": [
+      "Nightlife",
+      "Friends and chaos",
+      "Food hunt"
+    ],
+    "suitableGroupSizes": [
+      "couple",
+      "friends-2-3",
+      "group-4-6",
+      "large-group"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 120,
+    "recommendedVisitWindows": [
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "Wednesday evenings for trivia night or 7:00 PM for happy hour craft tasters.",
+    "openingHours": "12:30 PM – 1:30 AM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-14",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "valet-only",
+      "nearestMetroOrBus": "KP Lane 6 Auto"
+    },
+    "amenities": [
+      "Craft Ciders on Tap",
+      "Live Sports",
+      "Valet Parking",
+      "Indoor & Terrace"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:30 PM – 12:00 AM",
+      "vibe": "Upbeat pub, music-driven, lively chatter",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Craft Ciders",
+      "Pub Quiz",
+      "Nightlife",
+      "KP Pub"
+    ],
+    "mapQuery": "Effingut Koregaon Park Pune"
+  },
+  {
+    "id": "raja-dinkar-kelkar-museum",
+    "slug": "raja-dinkar-kelkar-museum",
+    "name": "Raja Dinkar Kelkar Museum",
+    "category": "Heritage & Culture",
+    "subcategory": "Eclectic 20,000-Piece Indian Heritage Treasury",
+    "neighborhood": "FC Road & Deccan",
+    "address": "1377-78, Natu Baug, Off Bajirao Road, Shukrawar Peth, Pune",
+    "latitude": 18.5109,
+    "longitude": 73.8548,
+    "shortDescription": "Dr. D.G. Kelkar’s astonishing personal lifetime collection of 20,000 historic Indian artifacts, musical instruments, and the Mastani Mahal replica.",
+    "fullDescription": "One man’s sixty-year passion project, this museum is a treasure chest. Marvel at carved wooden doors, Gujarat carved balconies, intricate betel nut cutters, century-old veenas and sitars, and a recreation of Mastani Mahal with mirrored ceilings.",
+    "whyVisit": "Witnessing the astounding Mastani Mahal courtyard and rare musical instruments of historic India.",
+    "imageUrl": "https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 50,
+    "priceMax": 100,
+    "priceBasis": "entry fee",
+    "averageVisitCost": 75,
+    "bestFor": [
+      "Arts & crafts history",
+      "Cultural immersion",
+      "Quiet afternoon exploration",
+      "Photography lovers"
+    ],
+    "moods": [
+      "Art and culture",
+      "Solo reset",
+      "Slow morning"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 90,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon"
+    ],
+    "bestTimeNote": "10:30 AM – 1:00 PM when the halls are peacefully quiet.",
+    "openingHours": "10:00 AM – 5:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-08-20",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Mandai Metro (600m)"
+    },
+    "amenities": [
+      "Curated Galleries",
+      "Museum Gift Shop",
+      "Audio Guides available"
+    ],
+    "crowdProfile": {
+      "peakHours": "1:30 PM – 4:00 PM",
+      "vibe": "Cerebral, historic, ornate, meditative",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Museum",
+      "Heritage",
+      "Mastani Mahal",
+      "Cultural"
+    ],
+    "mapQuery": "Raja Dinkar Kelkar Museum Pune",
+    "isHiddenGem": true
+  },
+  {
+    "id": "camp-burger-east-street",
+    "slug": "camp-burger-east-street",
+    "name": "Burger (Formerly Burger King)",
+    "category": "Iconic Eateries",
+    "subcategory": "Legendary Colossal Student Burgers",
+    "neighborhood": "Camp",
+    "address": "East Street, Camp, Pune (Near Victory Cinema)",
+    "latitude": 18.5142,
+    "longitude": 73.8805,
+    "shortDescription": "Pune’s cult-classic burger joint serving monster chicken, beef-style, and vegetarian steak burgers with crinkle-cut fries at unbeatable prices.",
+    "fullDescription": "Decades before international chains arrived in India, Pune students made this independent joint legendary. Renowned for its massive chicken burger laden with salami, fried eggs, and crisp lettuce between soft sesame buns.",
+    "whyVisit": "Tackling a jumbo Chicken Burger and iced tea for ₹180 in a buzzing old-school retro cafeteria.",
+    "imageUrl": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 120,
+    "priceMax": 260,
+    "priceBasis": "per person",
+    "averageVisitCost": 180,
+    "bestFor": [
+      "Massive hunger cravings",
+      "Student budget celebration",
+      "Casual friends food run"
+    ],
+    "moods": [
+      "Food hunt",
+      "Friends and chaos",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 40,
+    "recommendedVisitWindows": [
+      "afternoon",
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "3:30 PM – 5:00 PM for shorter billing token queues.",
+    "openingHours": "11:30 AM – 10:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-16",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "moderate",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "East Street Bus Stop"
+    },
+    "amenities": [
+      "Token Fast Service",
+      "Huge Portions",
+      "Famous Crinkle Fries"
+    ],
+    "crowdProfile": {
+      "peakHours": "1:00 PM – 2:30 PM & 7:00 PM – 9:30 PM",
+      "vibe": "High volume, student cult, fast and filling",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Cult Burger",
+      "Under ₹200",
+      "Massive Portions",
+      "Student Legend"
+    ],
+    "mapQuery": "Burger East Street Camp Pune"
+  },
+  {
+    "id": "durga-cafe-kothrud",
+    "slug": "durga-cafe-kothrud",
+    "name": "Durga Café (Original)",
+    "category": "Iconic Eateries",
+    "subcategory": "Legendary Cold Coffee & Quick Tiffins",
+    "neighborhood": "Kothrud",
+    "address": "Near Mayur Colony / MIT College Road, Kothrud, Pune",
+    "latitude": 18.5065,
+    "longitude": 73.8198,
+    "shortDescription": "The student epicenter of thick chocolate-blended cold coffee, steaming poha, and misal on a strict pocket-money budget.",
+    "fullDescription": "If FC Road belongs to Vaishali, Kothrud belongs to Durga. Starting from a modest kiosk near MIT campus, Durga popularized Pune’s signature chocolate-dust topped cold coffee. Always filled with students discussing exams, engineering codes, and weekend bike trips.",
+    "whyVisit": "Sipping thick, chilled chocolate Cold Coffee for just ₹40 alongside piping hot Kanda Poha.",
+    "imageUrl": "https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 40,
+    "priceMax": 140,
+    "priceBasis": "per person",
+    "averageVisitCost": 80,
+    "bestFor": [
+      "Pocket money hangouts",
+      "Late evening cold coffee",
+      "Quick student snacks"
+    ],
+    "moods": [
+      "Friends and chaos",
+      "Food hunt",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 30,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon",
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "4:30 PM – 6:30 PM when students gather after college lectures.",
+    "openingHours": "7:00 AM – 11:30 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-08",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "difficult",
+      "nearestMetroOrBus": "Ideal Colony Metro (500m)"
+    },
+    "amenities": [
+      "Quick Standing Tables",
+      "Affordable Cold Coffee",
+      "UPI Friendly"
+    ],
+    "crowdProfile": {
+      "peakHours": "5:00 PM – 9:00 PM",
+      "vibe": "Youthful, fast, energetic student crowd",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Cold Coffee",
+      "Under ₹100",
+      "Student Classic",
+      "Kothrud Vibe"
+    ],
+    "mapQuery": "Durga Cafe Kothrud Pune"
+  },
+  {
+    "id": "one-o-eight-cafe-kp",
+    "slug": "one-o-eight-cafe-kp",
+    "name": "One O Eight Lifestyle Café",
+    "category": "Cafés & Bakeries",
+    "subcategory": "Mindful Wellness Brunch & Specialty Espresso",
+    "neighborhood": "Koregaon Park",
+    "address": "Lane 6, Pingale Corner, Koregaon Park, Pune",
+    "latitude": 18.5365,
+    "longitude": 73.8972,
+    "shortDescription": "A mindful sanctuary serving artisan sourdough tartines, specialty pour-overs, smoothie bowls, and wholesome vegetarian fare.",
+    "fullDescription": "Conceived as a conscious dining space, One O Eight offers sunlit wooden furniture, lush ferns, yoga vibes, and some of the best specialty roasted coffee in Pune. Perfect for calm mornings, slow reading, and nourishing wholefood brunches.",
+    "whyVisit": "Sourdough avocado toast with poached eggs and a specialty flat white in an airy green courtyard.",
+    "imageUrl": "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 350,
+    "priceMax": 850,
+    "priceBasis": "per person",
+    "averageVisitCost": 550,
+    "bestFor": [
+      "Weekend wellness brunch",
+      "Specialty coffee lovers",
+      "Solo journal writing",
+      "Mindful date"
+    ],
+    "moods": [
+      "Slow morning",
+      "Coffee and conversations",
+      "Solo reset",
+      "Date night"
+    ],
+    "suitableGroupSizes": [
+      "solo",
+      "couple",
+      "friends-2-3"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 80,
+    "recommendedVisitWindows": [
+      "morning",
+      "afternoon"
+    ],
+    "bestTimeNote": "9:00 AM – 11:00 AM for peaceful morning sunlight and gentle music.",
+    "openingHours": "8:00 AM – 10:00 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-18",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "KP Lane 6 Auto Stand"
+    },
+    "amenities": [
+      "Artisan Sourdough",
+      "Specialty Coffee",
+      "Pet Friendly",
+      "Free Wi-Fi"
+    ],
+    "crowdProfile": {
+      "peakHours": "10:30 AM – 1:30 PM",
+      "vibe": "Zen, sophisticated, mindful, slow living",
+      "noiseLevel": "quiet"
+    },
+    "tags": [
+      "Specialty Coffee",
+      "Brunch",
+      "Mindful Living",
+      "KP Lane 6"
+    ],
+    "mapQuery": "One O Eight Cafe Koregaon Park Pune",
+    "isTrending": true
+  },
+  {
+    "id": "squisito-kp",
+    "slug": "squisito-kp",
+    "name": "Squisito",
+    "category": "Iconic Eateries",
+    "subcategory": "Gourmet Vegetarian Italian & Gelato Parlour",
+    "neighborhood": "Koregaon Park",
+    "address": "Lane 6, Meera Nagar, Koregaon Park, Pune",
+    "latitude": 18.5372,
+    "longitude": 73.8968,
+    "shortDescription": "A charming Italian haven serving freshly rolled handmade pastas, thin-crust woodfired pizzas, and indulgent chocolate fondue.",
+    "fullDescription": "Loved across Pune for its uncompromising commitment to authentic Italian recipes in a warm, candlelit dining setting. The four-cheese ravioli, pesto gnocchi, and creamy fondues have made it an enduring date night and family favorite.",
+    "whyVisit": "Authentic handmade ravioli in sage butter sauce followed by chocolate fondue in a romantic setting.",
+    "imageUrl": "https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 450,
+    "priceMax": 1100,
+    "priceBasis": "per person",
+    "averageVisitCost": 700,
+    "bestFor": [
+      "Romantic dates",
+      "Vegetarian gourmet dining",
+      "Celebratory meals"
+    ],
+    "moods": [
+      "Date night",
+      "Coffee and conversations",
+      "Food hunt"
+    ],
+    "suitableGroupSizes": [
+      "couple",
+      "friends-2-3",
+      "group-4-6"
+    ],
+    "indoorOutdoor": "indoor",
+    "estimatedVisitDurationMinutes": 90,
+    "recommendedVisitWindows": [
+      "afternoon",
+      "sunset-evening"
+    ],
+    "bestTimeNote": "Book ahead or arrive by 7:15 PM for romantic terrace booths.",
+    "openingHours": "12:00 PM – 11:00 PM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-12",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "valet-only",
+      "nearestMetroOrBus": "KP Lane 6 Auto"
+    },
+    "amenities": [
+      "Pure Vegetarian Italian",
+      "Artisan Desserts",
+      "Romantic Lighting"
+    ],
+    "crowdProfile": {
+      "peakHours": "8:00 PM – 10:15 PM",
+      "vibe": "Warm, romantic, Italian trattoria warmth",
+      "noiseLevel": "moderate"
+    },
+    "tags": [
+      "Date Spot",
+      "Handmade Pasta",
+      "Italian",
+      "Romantic"
+    ],
+    "mapQuery": "Squisito Koregaon Park Pune"
+  },
+  {
+    "id": "balewadi-high-street",
+    "slug": "balewadi-high-street",
+    "name": "Balewadi High Street Promenade",
+    "category": "Shopping & Leisure",
+    "subcategory": "Pedestrian Boulevard & Open-Air Gastropub Strip",
+    "neighborhood": "Baner & Balewadi",
+    "address": "Balewadi High Street, Laxman Nagar, Balewadi, Pune",
+    "latitude": 18.5721,
+    "longitude": 73.7745,
+    "shortDescription": "Pune’s premier open-air lifestyle strip, boasting wide European-style pedestrian sidewalks, trendy microbreweries, and dessert parlors.",
+    "fullDescription": "Connecting Baner with Balewadi, this vibrant boulevard hosts some of western Pune’s finest dining spots, ice cream parlours, and open alfresco bars. Perfect for an unhurried evening walk hopping between dessert bars, bookstores, and cocktail patios.",
+    "whyVisit": "Strolling down the illuminated, tree-lined pedestrian avenue and hopping between outdoor dessert counters and brewpubs.",
+    "imageUrl": "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1200&q=80",
+    "priceMin": 200,
+    "priceMax": 900,
+    "priceBasis": "per person",
+    "averageVisitCost": 450,
+    "bestFor": [
+      "Evening strolls",
+      "Pub hopping",
+      "Friend reunions",
+      "Open-air dining"
+    ],
+    "moods": [
+      "Friends and chaos",
+      "Nightlife",
+      "Date night",
+      "Something spontaneous"
+    ],
+    "suitableGroupSizes": [
+      "couple",
+      "friends-2-3",
+      "group-4-6",
+      "large-group"
+    ],
+    "indoorOutdoor": "both",
+    "estimatedVisitDurationMinutes": 100,
+    "recommendedVisitWindows": [
+      "sunset-evening",
+      "late-night"
+    ],
+    "bestTimeNote": "6:30 PM – 9:30 PM when the boulevard lights up and evening breeze cools the avenue.",
+    "openingHours": "11:00 AM – 1:00 AM (Daily)",
+    "isVerified": true,
+    "lastVerifiedAt": "2026-09-14",
+    "dataConfidence": "verified",
+    "transportAccessibility": {
+      "walkingFriendly": true,
+      "twoWheelerParking": "easy",
+      "carParking": "moderate",
+      "nearestMetroOrBus": "Balewadi Phata Bus Terminal"
+    },
+    "amenities": [
+      "Wide Pedestrian Walkway",
+      "Multiple Cuisines",
+      "Outdoor Patios",
+      "ATM Access"
+    ],
+    "crowdProfile": {
+      "peakHours": "7:30 PM – 11:00 PM",
+      "vibe": "Modern, cosmopolitan, lively boulevard",
+      "noiseLevel": "lively"
+    },
+    "tags": [
+      "Boulevard",
+      "Nightlife",
+      "Balewadi",
+      "Open Air"
+    ],
+    "mapQuery": "Balewadi High Street Pune",
+    "isTrending": true
+  }
+];
+
+    const PUNE_AREAS = [
+      {
+        id: 'fc-road-deccan',
+        name: 'FC Road & Deccan',
+        tagline: 'The intellectual, youthful, and nostalgic epicenter of Pune.',
+        description: 'Home to century-old educational bastions like Fergusson College and BMCC, tree-canopied residential lanes of Prabhat Road, and lively shopping sidewalks. Here, college debates, filter coffee, and iconic Irani bun maska collide.',
+        vibe: 'Youthful energy meets old-world Puneri heritage and academic charm.',
+        walkingScore: 'Very High',
+        parkingAdvice: 'Two-wheelers parking along designated bays; cars strictly discouraged on FC Road itself (use Sambhaji Udyan parking).',
+        transitAccess: 'Direct connectivity via Deccan Gymkhana & Chhatrapati Sambhaji Udyan Metro stations, plus frequent PMC city buses.',
+        highlights: ['Vaishali', 'Café Goodluck', 'Wadeshwar', 'Hong Kong Lane', 'Kamala Nehru Park', 'Le Plaisir'],
+        isMvpFocus: true
+      },
+      {
+        id: 'jm-road',
+        name: 'JM Road',
+        tagline: 'Wide avenues, historical caves, and green civic gardens.',
+        description: 'Running parallel to the Mutha river, Jangali Maharaj Road features wide walkways, century-old banyan trees, the 8th-century Pataleshwar rock cave temple, and iconic sweet marts.',
+        vibe: 'Spacious, bustling, civic-minded with ancient archaeological retreats.',
+        walkingScore: 'High',
+        parkingAdvice: 'Pay-and-park bays along the riverbed road; JM Road side bays fill up fast by noon.',
+        transitAccess: 'Shivajinagar Metro station & PMC bus junction at Sancheti Hospital end.',
+        highlights: ['Pataleshwar Cave Temple', 'Chhatrapati Sambhaji Garden', 'Modern Café'],
+        isMvpFocus: false
+      },
+      {
+        id: 'koregaon-park',
+        name: 'Koregaon Park',
+        tagline: 'Leafy boulevard lanes, bohemian patios, and cosmopolitan nightlife.',
+        description: 'Famous for its numbered leafy lanes draped in ancient banyans, Koregaon Park blends global wellness culture with upscale microbreweries, specialty patisseries, and independent art spaces.',
+        vibe: 'Chic, international, lush green canopy, relaxed indulgence.',
+        walkingScore: 'High',
+        parkingAdvice: 'Valet parking common at major venues; lane parking subject to odd-even resident rules.',
+        transitAccess: 'Nearest metro at Bund Garden & Kalyani Nagar; auto-rickshaws plentiful.',
+        highlights: ['German Bakery', 'The French Window', 'High Spirits', 'One O Eight'],
+        isMvpFocus: false
+      },
+      {
+        id: 'kalyani-nagar',
+        name: 'Kalyani Nagar',
+        tagline: 'Modern riverside culture, craft breweries, and breezy pet-friendly lawns.',
+        description: 'Bordered by the Mula-Mutha river and East Avenue, Kalyani Nagar offers spacious gastropubs, pet-friendly cafés, Jogger’s Park, and rapid connectivity to both KP and Viman Nagar.',
+        vibe: 'Contemporary urban comfort, young professionals, relaxed craft dining.',
+        walkingScore: 'Moderate',
+        parkingAdvice: 'Most restaurants provide dedicated valet; convenient roadside two-wheeler spots.',
+        transitAccess: 'Kalyani Nagar Metro station located directly on the main arterial avenue.',
+        highlights: ['Toit Pune', 'Elephant & Co.', 'Jogger’s Park'],
+        isMvpFocus: false
+      },
+      {
+        id: 'baner-balewadi',
+        name: 'Baner & Balewadi',
+        tagline: 'Tech-corridor vitality, indie bookstores, and European-style boulevards.',
+        description: 'Western Pune’s vibrant modern district. Features Balewadi High Street’s lively pedestrian food promenade alongside tucked-away cultural gems like Pagdandi book café and Baner Hill trails.',
+        vibe: 'Progressive, active, tech-savvy with thriving artisanal communities.',
+        walkingScore: 'Moderate',
+        parkingAdvice: 'High Street has dedicated paid basement parking; Baner road has curbside spots.',
+        transitAccess: 'Metro line under development; accessible via direct highway and arterial buses.',
+        highlights: ['Pagdandi Books Chai Café', 'Balewadi High Street', 'Baner Hill'],
+        isMvpFocus: false
+      },
+      {
+        id: 'camp',
+        name: 'Camp',
+        tagline: 'Colonial heritage, Parsi bakeries, and bustling shopping bazaars.',
+        description: 'Pune Cantonment preserves military cantonment architecture, Gothic clocktowers, vintage Parsi diners, and MG Road shopping where generations have bought Shrewsbury biscuits and chicken sandwiches.',
+        vibe: 'Vintage nostalgia, cantonment symmetry, bustling commercial energy.',
+        walkingScore: 'High',
+        parkingAdvice: 'Car parking is challenging on MG Road and East Street; prefer public transit or two-wheelers.',
+        transitAccess: 'Pune Railway Station is 10 minutes away; extensive bus connectivity.',
+        highlights: ['Marz-O-Rin', 'Burger (East Street)', 'Kayani Bakery'],
+        isMvpFocus: false
+      },
+      {
+        id: 'kothrud',
+        name: 'Kothrud',
+        tagline: 'Cultural traditionalism, student hubs, and scenic hill ridges.',
+        description: 'Once a quiet western suburb, Kothrud is now a powerhouse of student hangout hubs, authentic misal joints, and northern access trails to Vetal Tekdi and ARAI hills.',
+        vibe: 'Warmly traditional, student-friendly, community-rooted.',
+        walkingScore: 'Moderate',
+        parkingAdvice: 'Easier parking than old peths, especially along DP Road and Mayur Colony.',
+        transitAccess: 'Served directly by the Vanaz – Garware College Metro line.',
+        highlights: ['Durga Café', 'Vetal Tekdi access', 'Kata Kirr'],
+        isMvpFocus: false
+      },
+      {
+        id: 'pashan-hills',
+        name: 'Pashan & Hills',
+        tagline: 'Scenic ridgelines, freshwater lake sanctuaries, and open skies.',
+        description: 'The natural western sanctuary of Pune featuring the expansive Vetal Hill ridge, Pashan wetland lake, and tranquil trails where birdwatchers and runners breathe clean hill air.',
+        vibe: 'Quiet, rugged, nature-first, contemplative.',
+        walkingScore: 'Very High (on trails)',
+        parkingAdvice: 'Ample open parking near ARAI gate and Pashan Lake entrance.',
+        transitAccess: 'Auto-rickshaw or personal two-wheeler recommended for trailhead access.',
+        highlights: ['Vetal Tekdi', 'Pashan Lake Nature Trail'],
+        isMvpFocus: false
+      }
+    ];
+
+    const MOODS_LIST = [
+      { mood: 'Slow morning', label: 'Slow Morning', desc: 'Irani chai, quiet reading & breakfast', icon: '☀️' },
+      { mood: 'Coffee and conversations', label: 'Coffee & Talks', desc: 'Green garden patios & pour-overs', icon: '☕' },
+      { mood: 'Date night', label: 'Date Night', desc: 'Intimate candlelight & romantic strolls', icon: '🍷' },
+      { mood: 'Friends and chaos', label: 'Friends & Chaos', desc: 'Cold coffee, food runs & laughter', icon: '🍕' },
+      { mood: 'Nature escape', label: 'Nature Escape', desc: 'Hilltop breeze, sunrise trails & birds', icon: '🌿' },
+      { mood: 'Food hunt', label: 'Food Hunt', desc: 'Iconic SPDP, misal & monster burgers', icon: '🍛' },
+      { mood: 'Art and culture', label: 'Art & Heritage', desc: 'Basalt rock caves, forts & zines', icon: '🏛' },
+      { mood: 'Nightlife', label: 'Nightlife & Craft', desc: 'Microbreweries, live gigs & patios', icon: '🍺' },
+      { mood: 'Solo reset', label: 'Solo Reset', desc: 'Barefoot tea lounges & calm parks', icon: '📖' },
+      { mood: 'Something spontaneous', label: 'Spontaneous', desc: 'Surprise route across the city', icon: '✨' }
+    ];
+
+    // ================= APP STATE =================
+    let currentActiveArea = 'FC Road & Deccan';
+    let plannerStep = 1;
+    let plannerPrefs = {
+      moods: ['Slow morning'],
+      budgetTier: '200-500',
+      customBudget: 400,
+      includeFood: true,
+      includeTransport: true,
+      includeActivities: true,
+      duration: '3-4-hours',
+      startingArea: 'FC Road & Deccan',
+      groupSize: 'friends-2-3',
+      groupCount: 3,
+      transportMode: 'two-wheeler',
+      atmosphere: 'any',
+      avoidCrowds: false
+    };
+    let activeGeneratedItinerary = null;
+
+    // ================= INITIALIZATION =================
+    window.addEventListener('DOMContentLoaded', () => {
+      initTopoCanvas();
+      renderMoodStrip();
+      renderTrendingSection();
+      renderNeighborhoodSection();
+      renderHiddenGemsSection();
+      renderCatalogGrid(PUNE_PLACES);
+      renderPlanner();
+    });
+
+    function toggleMobileMenu() {
+      const d = document.getElementById('mobileDrawer');
+      d.classList.toggle('hidden');
+    }
+
+    // ================= TOPOGRAPHIC CANVAS =================
+    function initTopoCanvas() {
+      const canvas = document.getElementById('topoCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) return;
+
+      let width = (canvas.width = canvas.parentElement.clientWidth || 500);
+      let height = (canvas.height = canvas.parentElement.clientHeight || 400);
+
+      window.addEventListener('resize', () => {
+        if (!canvas.parentElement) return;
+        width = canvas.width = canvas.parentElement.clientWidth;
+        height = canvas.height = canvas.parentElement.clientHeight;
+      });
+
+      let mouseX = width / 2;
+      let mouseY = height / 2;
+      let targetX = mouseX;
+      let targetY = mouseY;
+
+      window.addEventListener('mousemove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        targetX = e.clientX - rect.left;
+        targetY = e.clientY - rect.top;
+      });
+
+      let time = 0;
+      function loop() {
+        time += 0.008;
+        mouseX += (targetX - mouseX) * 0.05;
+        mouseY += (targetY - mouseY) * 0.05;
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Ambient radial
+        const grad = ctx.createRadialGradient(mouseX, mouseY, 10, width / 2, height / 2, Math.max(width, height) * 0.7);
+        grad.addColorStop(0, 'rgba(200, 90, 50, 0.08)');
+        grad.addColorStop(0.5, 'rgba(30, 58, 47, 0.04)');
+        grad.addColorStop(1, 'rgba(251, 249, 245, 0)');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, width, height);
+
+        // Topo contour rings
+        const lines = 18;
+        ctx.lineWidth = 1.1;
+
+        for (let i = 0; i < lines; i++) {
+          const prog = i / lines;
+          ctx.beginPath();
+          const alpha = 0.12 + Math.sin(time + prog * Math.PI) * 0.06;
+          ctx.strokeStyle = i % 3 === 0 ? 'rgba(200, 90, 50, ' + (alpha * 1.5) + ')' : 'rgba(30, 58, 47, ' + alpha + ')';
+
+          const baseR = 35 + i * (Math.min(width, height) / (lines * 1.6));
+
+          for (let angle = 0; angle <= Math.PI * 2; angle += 0.08) {
+            const noise = Math.sin(angle * 3 + time + i * 0.4) * 12 +
+                          Math.cos(angle * 5 - time * 0.7 + i) * 8 +
+                          Math.sin(angle * 2 + (mouseX / width) * 4) * 6;
+            const r = baseR + noise;
+            const x = width / 2 + Math.cos(angle) * r + (mouseX - width / 2) * (0.04 + prog * 0.06);
+            const y = height / 2 + Math.sin(angle) * (r * 0.72) + (mouseY - height / 2) * (0.04 + prog * 0.06);
+
+            if (angle === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.closePath();
+          ctx.stroke();
+        }
+
+        // Landmarks
+        const landmarks = [
+          { label: 'VETAL TEKDI · 800M', rx: 0.32, ry: 0.38, c: '#C85A32' },
+          { label: 'FERGUSSON HILL', rx: 0.50, ry: 0.52, c: '#1E3A2F' },
+          { label: 'OLD PETHS · 560M', rx: 0.68, ry: 0.65, c: '#1E3A2F' }
+        ];
+        landmarks.forEach((lm, idx) => {
+          const px = width * lm.rx + Math.sin(time + idx) * 2;
+          const py = height * lm.ry + Math.cos(time + idx) * 2;
+
+          ctx.beginPath();
+          ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+          ctx.fillStyle = lm.c;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(px, py, 7 + Math.sin(time * 2 + idx) * 2, 0, Math.PI * 2);
+          ctx.strokeStyle = lm.c === '#C85A32' ? 'rgba(200, 90, 50, 0.4)' : 'rgba(30, 58, 47, 0.3)';
+          ctx.stroke();
+
+          ctx.font = '9px sans-serif';
+          ctx.fillStyle = '#54524D';
+          ctx.fillText(lm.label, px + 8, py - 3);
+        });
+
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    // ================= RENDER MOOD STRIP =================
+    function renderMoodStrip() {
+      const container = document.getElementById('moodGrid');
+      if (!container) return;
+
+      container.innerHTML = MOODS_LIST.map(item => `
+        <button
+          onclick="selectMoodAndPlan('${item.mood}')"
+          class="group relative p-4 rounded-2xl text-left transition-all border border-[#E8E4DA] bg-[#FBF9F5] hover:bg-white hover:border-[#C7C4BC] hover:shadow-soft-sm flex flex-col justify-between min-h-[125px]"
+        >
+          <div class="w-8 h-8 rounded-xl bg-white flex items-center justify-center text-base shadow-sm group-hover:scale-110 transition-transform">
+            ${item.icon}
+          </div>
+          <div class="mt-3">
+            <span class="font-bold text-xs text-[#1A1917] group-hover:text-[#C85A32] transition-colors block">
+              ${item.label}
+            </span>
+            <span class="text-[11px] text-[#75726C] line-clamp-2 mt-0.5 leading-snug">
+              ${item.desc}
+            </span>
+          </div>
+          <span class="absolute top-3 right-3 text-[10px] text-[#75726C] opacity-0 group-hover:opacity-100 transition-opacity">
+            →
+          </span>
+        </button>
+      `).join('');
+    }
+
+    function selectMoodAndPlan(mood) {
+      plannerPrefs.moods = [mood];
+      plannerStep = 2; // Jump to budget
+      renderPlanner();
+      const el = document.getElementById('planner-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ================= PLACE CARD HTML GENERATOR =================
+    function createPlaceCardHTML(place) {
+      return `
+        <article
+          onclick="openPlaceModal('${place.id}')"
+          class="group cursor-pointer bg-white rounded-2xl border border-[#E8E4DA] overflow-hidden shadow-soft-sm hover:shadow-editorial transition-all duration-300 flex flex-col hover:-translate-y-1"
+        >
+          <div class="relative aspect-[16/10] overflow-hidden bg-[#F5F0E6]">
+            <img
+              src="${place.imageUrl}"
+              alt="${place.name}"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold bg-white/90 text-[#1A1917]">
+                  ${place.category}
+                </span>
+                ${place.isHiddenGem ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#1E3A2F] text-white">Hidden Gem</span>' : ''}
+                ${place.isTrending ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#C85A32] text-white">Radar Pick</span>' : ''}
+              </div>
+
+              <button
+                onclick="event.stopPropagation(); toggleBookmark('${place.id}')"
+                class="w-8 h-8 rounded-full bg-white/80 hover:bg-white text-[#1A1917] flex items-center justify-center text-xs"
+                title="Save Place"
+              >
+                ★
+              </button>
+            </div>
+
+            <div class="absolute bottom-3 left-3 text-white text-[11px] font-medium">
+              📍 ${place.neighborhood}
+            </div>
+          </div>
+
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <div class="flex items-baseline justify-between gap-2">
+                <h3 class="font-serif text-xl font-bold tracking-tight text-[#141312] group-hover:text-[#C85A32] transition-colors">
+                  ${place.name}
+                </h3>
+                <span class="text-xs font-semibold text-[#1E3A2F] shrink-0">
+                  ${place.priceBasis === 'free' ? 'Free entry' : '₹' + place.averageVisitCost + ' / pers.'}
+                </span>
+              </div>
+
+              <p class="text-xs text-[#54524D] line-clamp-2 mt-1.5 leading-relaxed font-normal">
+                ${place.shortDescription}
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-[#F5F0E6] flex items-center justify-between text-[11px] text-[#75726C]">
+              <span class="truncate">⏱ ${place.bestTimeNote.split('.')[0]}</span>
+              <span class="text-[#1E3A2F] font-semibold text-[11px] group-hover:translate-x-0.5 transition-transform shrink-0">
+                View Guide →
+              </span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    // ================= RENDER TRENDING SECTION =================
+    function renderTrendingSection() {
+      const sideCol = document.getElementById('sideTrendingCol');
+      const bottomRow = document.getElementById('bottomTrendingRow');
+      if (!sideCol || !bottomRow) return;
+
+      const goodluck = PUNE_PLACES.find(p => p.id === 'cafe-goodluck-deccan');
+      const tekdi = PUNE_PLACES.find(p => p.id === 'vetal-tekdi-hills');
+      const german = PUNE_PLACES.find(p => p.id === 'german-bakery-kp');
+      const plaisir = PUNE_PLACES.find(p => p.id === 'le-plaisir-prabhat-road');
+      const toit = PUNE_PLACES.find(p => p.id === 'toit-brewery-kalyani-nagar');
+
+      if (goodluck && tekdi) {
+        sideCol.innerHTML = createPlaceCardHTML(goodluck) + createPlaceCardHTML(tekdi);
+      }
+
+      const rest = [german, plaisir, toit].filter(Boolean);
+      bottomRow.innerHTML = rest.map(createPlaceCardHTML).join('');
+    }
+
+    // ================= RENDER NEIGHBORHOOD SECTION =================
+    function renderNeighborhoodSection() {
+      const tabs = document.getElementById('areaTabs');
+      const briefing = document.getElementById('areaBriefingContainer');
+      const placesContainer = document.getElementById('areaPlacesContainer');
+      if (!tabs || !briefing || !placesContainer) return;
+
+      tabs.innerHTML = PUNE_AREAS.map(a => {
+        const isSel = a.name === currentActiveArea;
+        return `
+          <button
+            onclick="switchArea('${a.name}')"
+            class="px-4 py-2 rounded-full text-xs font-semibold whitespace-nowrap transition-all flex items-center gap-2 border ${
+              isSel
+                ? 'bg-[#1E3A2F] text-[#FBF9F5] border-[#1E3A2F] shadow-soft'
+                : 'bg-[#FBF9F5] text-[#54524D] border-[#E8E4DA] hover:bg-white hover:text-[#1A1917]'
+            }"
+          >
+            <span>${a.name}</span>
+            ${a.isMvpFocus ? '<span class="text-[9px] bg-[#C85A32] text-white px-1.5 py-0.2 rounded-full font-bold">Deep Guide</span>' : ''}
+          </button>
+        `;
+      }).join('');
+
+      const area = PUNE_AREAS.find(a => a.name === currentActiveArea) || PUNE_AREAS[0];
+      const areaPlaces = PUNE_PLACES.filter(p => p.neighborhood === currentActiveArea);
+
+      briefing.innerHTML = `
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div class="lg:col-span-7 space-y-4">
+            <span class="text-xs font-semibold text-[#C85A32]">📍 ${area.name} Briefing</span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">${area.tagline}</h3>
+            <p class="text-sm text-[#3D3B37] leading-relaxed">${area.description}</p>
+            <div class="pt-2 flex flex-wrap gap-2">
+              ${area.highlights.map(h => `<span class="px-3 py-1 rounded-full text-xs font-medium bg-white text-[#2A2926] border border-[#E8E4DA]">★ ${h}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 bg-white rounded-2xl p-6 border border-[#E8E4DA] space-y-4 text-xs">
+            <span class="font-serif font-bold text-sm text-[#1A1917] block">Local Mobility Intelligence</span>
+            <div class="space-y-3 divide-y divide-[#F5F0E6]">
+              <div class="pt-2">
+                <strong class="text-[#1A1917] block">Walkability Score:</strong>
+                <span class="text-[#54524D]">${area.walkingScore}</span>
+              </div>
+              <div class="pt-2">
+                <strong class="text-[#1A1917] block">Metro & Public Transit:</strong>
+                <span class="text-[#54524D]">${area.transitAccess}</span>
+              </div>
+              <div class="pt-2">
+                <strong class="text-[#1A1917] block">Parking Advice:</strong>
+                <span class="text-[#54524D]">${area.parkingAdvice}</span>
+              </div>
+            </div>
+            <div class="pt-2">
+              <button
+                onclick="setPlannerAreaAndLaunch('${area.name}')"
+                class="w-full py-2.5 rounded-full bg-[#1E3A2F] text-white text-xs font-semibold hover:bg-[#284E3F] transition-colors"
+              >
+                ✦ Plan Outing in ${area.name}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+
+      if (areaPlaces.length > 0) {
+        placesContainer.innerHTML = `
+          <div class="flex items-baseline justify-between mb-6">
+            <h3 class="font-serif text-2xl font-bold text-[#141312]">Curated in ${area.name} (${areaPlaces.length} places)</h3>
+            <span class="text-xs text-[#75726C]">Verified Editorial Listings</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            ${areaPlaces.map(createPlaceCardHTML).join('')}
+          </div>
+        `;
+      } else {
+        placesContainer.innerHTML = `
+          <div class="text-center py-16 bg-[#FBF9F5] rounded-3xl border border-dashed border-[#E8E4DA] p-8 space-y-3">
+            <div class="text-2xl">📍</div>
+            <h4 class="font-serif text-lg font-bold text-[#1A1917]">Progressive Catalog Expansion in Progress</h4>
+            <p class="text-xs text-[#75726C] max-w-md mx-auto">We are actively scouting verified, budget-honest gems in ${area.name}. Check our deep-coverage zones like FC Road & Deccan in the meantime.</p>
+            <button onclick="switchArea('FC Road & Deccan')" class="px-4 py-2 rounded-full bg-[#1E3A2F] text-white text-xs font-semibold">Switch to FC Road & Deccan</button>
+          </div>
+        `;
+      }
+    }
+
+    function switchArea(name) {
+      currentActiveArea = name;
+      renderNeighborhoodSection();
+    }
+
+    function handleNavAreaChange(val) {
+      if (val !== 'all') {
+        currentActiveArea = val;
+        renderNeighborhoodSection();
+        const el = document.getElementById('areas');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function setPlannerAreaAndLaunch(areaName) {
+      plannerPrefs.startingArea = areaName;
+      renderPlanner();
+      const el = document.getElementById('planner-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ================= RENDER HIDDEN GEMS =================
+    function renderHiddenGemsSection() {
+      const container = document.getElementById('hiddenGemsGrid');
+      if (!container) return;
+      const gems = PUNE_PLACES.filter(p => p.isHiddenGem);
+      container.innerHTML = gems.slice(0, 6).map(createPlaceCardHTML).join('');
+    }
+
+    // ================= CATALOG SEARCH & FILTER =================
+    function renderCatalogGrid(places) {
+      const grid = document.getElementById('catalogGrid');
+      const countEl = document.getElementById('catalogCount');
+      if (!grid) return;
+
+      countEl.innerText = `Showing ${places.length} verified places`;
+
+      if (places.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full text-center py-16 bg-white rounded-3xl border border-dashed border-[#E8E4DA] p-8 space-y-3">
+            <div class="text-2xl">🔍</div>
+            <h4 class="font-serif text-lg font-bold text-[#141312]">No matching places found</h4>
+            <p class="text-xs text-[#75726C] max-w-md mx-auto">Try clearing search terms or resetting filters.</p>
+            <button onclick="resetCatalogFilters()" class="px-4 py-2 rounded-full bg-[#1E3A2F] text-white text-xs font-semibold">Reset Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = places.map(createPlaceCardHTML).join('');
+    }
+
+    function handleCatalogFilterChange() {
+      const q = document.getElementById('catalogSearch').value.toLowerCase().trim();
+      const cat = document.getElementById('catalogCatSelect').value;
+      const area = document.getElementById('catalogAreaSelect').value;
+      const price = document.getElementById('catalogPriceSelect').value;
+
+      const filtered = PUNE_PLACES.filter(p => {
+        if (q) {
+          const match = p.name.toLowerCase().includes(q) ||
+                        p.shortDescription.toLowerCase().includes(q) ||
+                        p.subcategory.toLowerCase().includes(q) ||
+                        p.neighborhood.toLowerCase().includes(q);
+          if (!match) return false;
+        }
+        if (cat !== 'all' && p.category !== cat) return false;
+        if (area !== 'all' && p.neighborhood !== area) return false;
+        if (price !== 'all') {
+          const cost = p.averageVisitCost;
+          if (price === 'under-200' && cost > 200) return false;
+          if (price === '200-500' && (cost < 200 || cost > 500)) return false;
+          if (price === '500-1000' && (cost < 500 || cost > 1000)) return false;
+          if (price === '1000-plus' && cost < 1000) return false;
+        }
+        return true;
+      });
+
+      renderCatalogGrid(filtered);
+    }
+
+    function resetCatalogFilters() {
+      document.getElementById('catalogSearch').value = '';
+      document.getElementById('catalogCatSelect').value = 'all';
+      document.getElementById('catalogAreaSelect').value = 'all';
+      document.getElementById('catalogPriceSelect').value = 'all';
+      renderCatalogGrid(PUNE_PLACES);
+    }
+
+    // ================= OUTING PLANNER ENGINE =================
+    function renderPlanner() {
+      const container = document.getElementById('plannerCard');
+      if (!container) return;
+
+      if (activeGeneratedItinerary) {
+        renderItineraryView(container);
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="space-y-8">
+          <!-- Stepper Indicator -->
+          <div class="space-y-3 pb-6 border-b border-[#F5F0E6]">
+            <div class="flex items-center justify-between text-xs text-[#75726C]">
+              <span class="font-semibold text-[#1E3A2F] uppercase tracking-wider">
+                Step ${plannerStep} of 7
+              </span>
+              <span class="font-medium text-[#1A1917]">
+                ${plannerStep === 1 ? '1. Mood & Vibe' : ''}
+                ${plannerStep === 2 ? '2. Budget Parameters' : ''}
+                ${plannerStep === 3 ? '3. Available Time' : ''}
+                ${plannerStep === 4 ? '4. Starting Hub' : ''}
+                ${plannerStep === 5 ? '5. Group Size' : ''}
+                ${plannerStep === 6 ? '6. Transport Mode' : ''}
+                ${plannerStep === 7 ? '7. Atmosphere & Confirmation' : ''}
+              </span>
+            </div>
+            <div class="w-full h-1.5 bg-[#F5F0E6] rounded-full overflow-hidden">
+              <div class="h-full bg-[#1E3A2F] transition-all duration-300 rounded-full" style="width: ${(plannerStep / 7) * 100}%"></div>
+            </div>
+          </div>
+
+          <!-- Wizard Body -->
+          <div id="stepContent">
+            ${getStepHTML(plannerStep)}
+          </div>
+
+          <!-- Stepper Buttons -->
+          <div class="pt-6 border-t border-[#F5F0E6] flex items-center justify-between">
+            ${plannerStep > 1 ? `
+              <button onclick="setPlannerStep(${plannerStep - 1})" class="px-5 py-2.5 rounded-full border border-[#E8E4DA] text-xs font-semibold text-[#2A2926] hover:bg-[#F5F0E6]">
+                ← Previous
+              </button>
+            ` : '<div></div>'}
+
+            ${plannerStep < 7 ? `
+              <button onclick="setPlannerStep(${plannerStep + 1})" class="px-7 py-3 rounded-full bg-[#1E3A2F] text-white text-xs font-semibold hover:bg-[#284E3F] shadow-soft">
+                Next Step →
+              </button>
+            ` : `
+              <button onclick="generateOuting()" class="px-8 py-3.5 rounded-full bg-[#C85A32] text-white text-sm font-semibold hover:bg-[#D9714B] shadow-editorial transform hover:-translate-y-0.5 transition-all">
+                ✦ Generate My Outing Itinerary
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }
+
+    function setPlannerStep(s) {
+      plannerStep = s;
+      renderPlanner();
+    }
+
+    function getStepHTML(step) {
+      if (step === 1) {
+        return `
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">What kind of mood are we curating?</h3>
+              <p class="text-xs sm:text-sm text-[#75726C] mt-1">Select one or more vibes.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              ${MOODS_LIST.map(opt => {
+                const isSel = plannerPrefs.moods.includes(opt.mood);
+                return `
+                  <button
+                    onclick="togglePlannerMood('${opt.mood}')"
+                    class="p-4 rounded-2xl border text-left transition-all flex items-start justify-between ${
+                      isSel ? 'border-[#1E3A2F] bg-[#E3EDE8] text-[#1E3A2F] shadow-soft' : 'border-[#E8E4DA] bg-[#FBF9F5] text-[#2A2926] hover:bg-white'
+                    }"
+                  >
+                    <div>
+                      <span class="font-bold text-sm block">${opt.icon} ${opt.label}</span>
+                      <span class="text-xs text-[#54524D] mt-0.5 block">${opt.desc}</span>
+                    </div>
+                    <div class="w-5 h-5 rounded-full border flex items-center justify-center shrink-0 ml-2 ${isSel ? 'bg-[#1E3A2F] border-[#1E3A2F] text-white' : 'border-[#C7C4BC]'}">
+                      ${isSel ? '✓' : ''}
+                    </div>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      if (step === 2) {
+        const tiers = [
+          { id: 'under-200', label: 'Under ₹200', amount: 200, desc: 'Student pocket money (Chai, bun maska, street snacks)' },
+          { id: '200-500', label: '₹200 – ₹500', amount: 450, desc: 'Casual café brunch, dosa feast or hill snack' },
+          { id: '500-1000', label: '₹500 – ₹1,000', amount: 800, desc: 'French bistro meal or craft beer flight' },
+          { id: '1000-2000', label: '₹1,000 – ₹2,000', amount: 1500, desc: 'Full premium dinner, cocktails & cab transfers' },
+          { id: 'custom', label: 'Custom Amount', amount: plannerPrefs.customBudget, desc: 'Specify exact amount per person' }
+        ];
+
+        return `
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">Set your target budget per person.</h3>
+              <p class="text-xs sm:text-sm text-[#75726C] mt-1">We match real dish prices and never silently exceed this threshold.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              ${tiers.map(t => {
+                const isSel = plannerPrefs.budgetTier === t.id;
+                return `
+                  <button
+                    onclick="setPlannerBudgetTier('${t.id}')"
+                    class="p-4 rounded-2xl border text-left transition-all ${
+                      isSel ? 'border-[#1E3A2F] bg-[#E3EDE8] text-[#1E3A2F] shadow-soft' : 'border-[#E8E4DA] bg-[#FBF9F5] text-[#2A2926] hover:bg-white'
+                    }"
+                  >
+                    <span class="font-bold text-sm block">${t.label}</span>
+                    <span class="text-xs text-[#54524D] mt-1 block">${t.desc}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+
+            ${plannerPrefs.budgetTier === 'custom' ? `
+              <div class="p-5 rounded-2xl bg-[#FBF9F5] border border-[#E8E4DA] space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-xs font-semibold text-[#1A1917]">Custom Budget Per Person:</span>
+                  <span class="font-serif text-xl font-bold text-[#C85A32]">₹${plannerPrefs.customBudget}</span>
+                </div>
+                <input
+                  type="range"
+                  min="100"
+                  max="3000"
+                  step="50"
+                  value="${plannerPrefs.customBudget}"
+                  oninput="plannerPrefs.customBudget = Number(this.value); renderPlanner();"
+                  class="w-full accent-[#1E3A2F]"
+                />
+              </div>
+            ` : ''}
+
+            <div class="p-5 rounded-2xl bg-white border border-[#E8E4DA] space-y-3">
+              <span class="text-xs font-bold text-[#1A1917] block">What expenses should be included?</span>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" ${plannerPrefs.includeFood ? 'checked' : ''} onchange="plannerPrefs.includeFood = this.checked;" />
+                  <span>Food & Drinks</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" ${plannerPrefs.includeTransport ? 'checked' : ''} onchange="plannerPrefs.includeTransport = this.checked;" />
+                  <span>Transport & Fuel</span>
+                </label>
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" ${plannerPrefs.includeActivities ? 'checked' : ''} onchange="plannerPrefs.includeActivities = this.checked;" />
+                  <span>Entry & Activity Fees</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (step === 3) {
+        const durations = [
+          { id: '1-2-hours', hours: '1–2 Hours', label: 'Quick Hop', stops: '1 curated stop' },
+          { id: '3-4-hours', hours: '3–4 Hours', label: 'Classic Outing', stops: '2 complementary stops' },
+          { id: 'half-day', hours: '5–6 Hours', label: 'Half Day', stops: '3 stops with transfer buffers' },
+          { id: 'full-day', hours: '7–9 Hours', label: 'Full Day Immersion', stops: '4 curated stops across day' }
+        ];
+
+        return `
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">How much time do you have in Pune today?</h3>
+              <p class="text-xs sm:text-sm text-[#75726C] mt-1">We allocate realistic visit times and include travel buffers.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              ${durations.map(d => {
+                const isSel = plannerPrefs.duration === d.id;
+                return `
+                  <button
+                    onclick="plannerPrefs.duration = '${d.id}'; renderPlanner();"
+                    class="p-5 rounded-2xl border text-left transition-all ${
+                      isSel ? 'border-[#1E3A2F] bg-[#E3EDE8] text-[#1E3A2F] shadow-soft' : 'border-[#E8E4DA] bg-[#FBF9F5] text-[#2A2926] hover:bg-white'
+                    }"
+                  >
+                    <span class="font-serif font-bold text-lg block">${d.hours}</span>
+                    <span class="font-semibold text-xs text-[#54524D] block mt-0.5">${d.label}</span>
+                    <span class="text-[11px] text-[#75726C] mt-1 block">Yields ${d.stops}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      if (step === 4) {
+        return `
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">Where are you setting off from?</h3>
+              <p class="text-xs text-[#C85A32] mt-1 font-medium">📍 Default is FC Road & Deccan. Not your detected GPS.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              ${PUNE_AREAS.map(a => {
+                const isSel = plannerPrefs.startingArea === a.name;
+                return `
+                  <button
+                    onclick="plannerPrefs.startingArea = '${a.name}'; renderPlanner();"
+                    class="p-4 rounded-2xl border text-left transition-all ${
+                      isSel ? 'border-[#1E3A2F] bg-[#E3EDE8] text-[#1E3A2F] shadow-soft' : 'border-[#E8E4DA] bg-[#FBF9F5] text-[#2A2926] hover:bg-white'
+                    }"
+                  >
+                    <span class="font-bold text-sm block">${a.name}</span>
+                    <span class="text-[11px] text-[#54524D] line-clamp-1 mt-0.5">${a.tagline}</span>
+                    ${a.isMvpFocus ? '<span class="inline-block mt-2 text-[9px] font-bold uppercase tracking-wider text-[#C85A32]">★ Deepest verified data</span>' : ''}
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      if (step === 5) {
+        const groups = [
+          { id: 'solo', label: 'Solo Explorer', count: 1, desc: 'Quiet corners & personal pacing' },
+          { id: 'couple', label: 'Couple / Date', count: 2, desc: 'Romantic ambiance' },
+          { id: 'friends-2-3', label: '2 or 3 Friends', count: 3, desc: 'College banter & easy café tables' },
+          { id: 'group-4-6', label: 'Group of 4 to 6', count: 5, desc: 'Shared food feast & shared cabs' },
+          { id: 'large-group', label: 'Larger Crew (7+)', count: 8, desc: 'Spacious microbreweries & lawns' }
+        ];
+
+        return `
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">Who are you venturing out with?</h3>
+              <p class="text-xs sm:text-sm text-[#75726C] mt-1">Helps calculate shared expenses and seating feasibility.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              ${groups.map(g => {
+                const isSel = plannerPrefs.groupSize === g.id;
+                return `
+                  <button
+                    onclick="plannerPrefs.groupSize = '${g.id}'; plannerPrefs.groupCount = ${g.count}; renderPlanner();"
+                    class="p-4 rounded-2xl border text-left transition-all ${
+                      isSel ? 'border-[#1E3A2F] bg-[#E3EDE8] text-[#1E3A2F] shadow-soft' : 'border-[#E8E4DA] bg-[#FBF9F5] text-[#2A2926] hover:bg-white'
+                    }"
+                  >
+                    <span class="font-bold text-sm block">${g.label}</span>
+                    <span class="text-xs text-[#54524D] mt-1 block">${g.desc}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#FBF9F5] border border-[#E8E4DA] flex items-center justify-between text-xs">
+              <span class="font-semibold text-[#1A1917]">Adjust exact headcount:</span>
+              <div class="flex items-center gap-3">
+                <button onclick="plannerPrefs.groupCount = Math.max(1, plannerPrefs.groupCount - 1); renderPlanner();" class="w-8 h-8 rounded-full bg-white border border-[#E8E4DA] font-bold">-</button>
+                <span class="font-serif font-bold text-base text-[#1E3A2F]">${plannerPrefs.groupCount} people</span>
+                <button onclick="plannerPrefs.groupCount++; renderPlanner();" class="w-8 h-8 rounded-full bg-white border border-[#E8E4DA] font-bold">+</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      if (step === 6) {
+        const trans = [
+          { id: 'two-wheeler', label: 'Two-Wheeler (Bike/Scooter)', desc: 'The authentic Pune way. 40% faster in traffic.' },
+          { id: 'walking', label: 'Walking Only', desc: 'Tight proximity within FC Road or Deccan alleys.' },
+          { id: 'public-transit', label: 'Public Transit / Metro', desc: 'Vanaz-Ruby Hall Metro corridor & buses.' },
+          { id: 'car-cab', label: 'Car or Cab (Ola/Uber/Auto)', desc: 'Comfortable, factoring in parking delays.' },
+          { id: 'flexible', label: 'Flexible / Auto Rickshaw', desc: 'Combination of hopping autos and walking.' }
+        ];
+
+        return `
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">How will you navigate the city?</h3>
+              <p class="text-xs sm:text-sm text-[#75726C] mt-1">Influences route clustering, fuel cost estimates, and parking buffers.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              ${trans.map(t => {
+                const isSel = plannerPrefs.transportMode === t.id;
+                return `
+                  <button
+                    onclick="plannerPrefs.transportMode = '${t.id}'; renderPlanner();"
+                    class="p-4 rounded-2xl border text-left transition-all ${
+                      isSel ? 'border-[#1E3A2F] bg-[#E3EDE8] text-[#1E3A2F] shadow-soft' : 'border-[#E8E4DA] bg-[#FBF9F5] text-[#2A2926] hover:bg-white'
+                    }"
+                  >
+                    <span class="font-bold text-sm block">${t.label}</span>
+                    <span class="text-xs text-[#54524D] mt-1 block">${t.desc}</span>
+                  </button>
+                `;
+              }).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      if (step === 7) {
+        return `
+          <div class="space-y-6">
+            <div>
+              <h3 class="font-serif text-2xl sm:text-3xl font-bold text-[#141312]">Fine-tune the atmosphere (Optional).</h3>
+              <p class="text-xs sm:text-sm text-[#75726C] mt-1">Review your parameters before we compute your day.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white border border-[#E8E4DA] flex items-center justify-between text-xs">
+              <div>
+                <span class="font-bold text-[#1A1917] block">Avoid peak weekend crowds?</span>
+                <span class="text-[#75726C]">Prioritizes unhurried courtyards and off-peak hours.</span>
+              </div>
+              <input type="checkbox" ${plannerPrefs.avoidCrowds ? 'checked' : ''} onchange="plannerPrefs.avoidCrowds = this.checked;" class="w-5 h-5 rounded" />
+            </div>
+
+            <div class="p-5 rounded-2xl bg-[#E3EDE8] border border-[#B9E4D0] space-y-2 text-xs">
+              <span class="font-semibold text-[#1E3A2F] block">Outing Summary:</span>
+              <div class="text-[#2A2926] leading-relaxed">
+                • <strong>Mood:</strong> ${plannerPrefs.moods.join(', ')} <br />
+                • <strong>Budget:</strong> ₹${getEffectiveBudget()} / person (${plannerPrefs.groupCount} people) <br />
+                • <strong>Duration:</strong> ${plannerPrefs.duration.replace('-', ' ')} starting from ${plannerPrefs.startingArea} <br />
+                • <strong>Transport:</strong> ${plannerPrefs.transportMode}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      return '';
+    }
+
+    function togglePlannerMood(mood) {
+      if (plannerPrefs.moods.includes(mood)) {
+        if (plannerPrefs.moods.length > 1) {
+          plannerPrefs.moods = plannerPrefs.moods.filter(m => m !== mood);
+        }
+      } else {
+        plannerPrefs.moods.push(mood);
+      }
+      renderPlanner();
+    }
+
+    function setPlannerBudgetTier(t) {
+      plannerPrefs.budgetTier = t;
+      renderPlanner();
+    }
+
+    function getEffectiveBudget() {
+      if (plannerPrefs.budgetTier === 'custom') return plannerPrefs.customBudget;
+      const bMap = { 'under-200': 200, '200-500': 450, '500-1000': 800, '1000-2000': 1500 };
+      return bMap[plannerPrefs.budgetTier] || 450;
+    }
+
+    // ================= GENERATE OUTING ALGORITHM =================
+    function generateOuting() {
+      const targetCount = plannerPrefs.duration === '1-2-hours' ? 1 :
+                          plannerPrefs.duration === '3-4-hours' ? 2 :
+                          plannerPrefs.duration === 'half-day' ? 3 : 4;
+
+      const maxPerPerson = getEffectiveBudget();
+      const startingArea = plannerPrefs.startingArea;
+      const selectedMood = plannerPrefs.moods[0] || 'Slow morning';
+
+      // Estimate transport cost
+      const transEst = plannerPrefs.includeTransport ? (plannerPrefs.transportMode === 'walking' ? 0 : 25) : 0;
+      const subtotalCeiling = Math.floor(maxPerPerson / 1.10);
+      const foodActivitiesBudget = Math.max(0, subtotalCeiling - transEst);
+
+      let cumulativeCost = 0;
+      const chosenPlaces = [];
+      const usedCats = new Set();
+
+      for (let i = 0; i < targetCount; i++) {
+        const remainingForStop = Math.max(0, foodActivitiesBudget - cumulativeCost);
+        const selectedIds = chosenPlaces.map(s => s.id);
+
+        const candidates = PUNE_PLACES
+          .filter(p => !selectedIds.includes(p.id))
+          .filter(p => p.priceBasis === 'free' || p.averageVisitCost <= remainingForStop)
+          .map(p => {
+            let s = 0;
+            if (p.moods.includes(selectedMood)) s += 40;
+            if (p.neighborhood === startingArea) s += 35;
+            else if (p.neighborhood.includes('FC Road') || startingArea.includes('FC Road')) s += 15;
+            if (usedCats.has(p.category)) s -= 40;
+            if (plannerPrefs.avoidCrowds && p.crowdProfile.noiseLevel === 'quiet') s += 15;
+            return { place: p, score: s };
+          })
+          .sort((a, b) => b.score - a.score);
+
+        if (candidates.length > 0) {
+          const chosen = candidates[0].place;
+          chosenPlaces.push(chosen);
+          cumulativeCost += chosen.averageVisitCost;
+          usedCats.add(chosen.category);
+        } else {
+          // Free or low cost fallback
+          const freeFallback = PUNE_PLACES
+            .filter(p => !selectedIds.includes(p.id) && (p.priceBasis === 'free' || p.averageVisitCost <= remainingForStop))[0];
+          if (freeFallback) {
+            chosenPlaces.push(freeFallback);
+            cumulativeCost += freeFallback.averageVisitCost;
+            usedCats.add(freeFallback.category);
+          }
+        }
+      }
+
+      if (chosenPlaces.length === 0) {
+        chosenPlaces.push(PUNE_PLACES[0]);
+      }
+
+      // Build Stops with Schedule
+      let startMins = selectedMood === 'Slow morning' ? 8 * 60 :
+                      selectedMood === 'Nature escape' ? 6 * 60 + 30 :
+                      selectedMood === 'Nightlife' ? 18 * 60 : 14 * 60 + 30;
+
+      let totalMins = 0;
+      let foodSpend = 0;
+      let actSpend = 0;
+
+      const stops = chosenPlaces.map((place, idx) => {
+        const arr = formatClock(startMins);
+        startMins += place.estimatedVisitDurationMinutes;
+        totalMins += place.estimatedVisitDurationMinutes;
+        const dep = formatClock(startMins);
+
+        if (place.priceBasis === 'entry fee') actSpend += place.averageVisitCost;
+        else foodSpend += place.averageVisitCost;
+
+        // Alternatives for replace
+        const alts = PUNE_PLACES.filter(p => p.id !== place.id && !chosenPlaces.some(cp => cp.id === p.id)).slice(0, 3);
+
+        const stopObj = {
+          order: idx + 1,
+          place,
+          suggestedArrivalTime: arr,
+          suggestedDepartureTime: dep,
+          durationMinutes: place.estimatedVisitDurationMinutes,
+          estimatedCostPerPerson: place.averageVisitCost,
+          activityNote: place.bestFor[0] || 'Explore the local atmosphere',
+          availableAlternatives: alts
+        };
+
+        if (idx < chosenPlaces.length - 1) {
+          const transBuffer = plannerPrefs.transportMode === 'walking' ? 12 : 15;
+          startMins += transBuffer;
+          totalMins += transBuffer;
+          stopObj.travelToNext = {
+            distanceKm: 1.5,
+            mins: 10,
+            buffer: transBuffer - 10,
+            note: 'Short hop within corridor'
+          };
+        }
+
+        return stopObj;
+      });
+
+      const transCost = plannerPrefs.includeTransport ? (plannerPrefs.transportMode === 'walking' ? 0 : 40) : 0;
+      const subtotal = foodSpend + actSpend + transCost;
+      const contingency = Math.round(subtotal * 0.1);
+      const totalPerPerson = subtotal + contingency;
+      const totalGroup = totalPerPerson * plannerPrefs.groupCount;
+
+      activeGeneratedItinerary = {
+        title: `The Curated ${startingArea.split(' ')[0]} Exploration`,
+        tagline: `Crafted for ${plannerPrefs.groupCount} people focusing on ${plannerPrefs.moods.join(' & ')}`,
+        curatorNote: `Balanced itinerary keeping spending at ~₹${totalPerPerson}/person with realistic travel buffers.`,
+        stops,
+        totalDurationMinutes: totalMins,
+        budget: {
+          food: foodSpend,
+          transport: transCost,
+          activities: actSpend,
+          contingency,
+          totalPerPerson,
+          totalGroup,
+          isOver: totalPerPerson > maxPerPerson
+        },
+        trafficGuidance: {
+          peak: `Typical peak congestion around Goodluck Chowk & Karve Road between 6:00 PM – 8:30 PM.`,
+          window: `Best departure: Afternoon 2:00 PM – 4:30 PM or after 8:45 PM.`
+        }
+      };
+
+      renderPlanner();
+      const el = document.getElementById('planner-section');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function formatClock(m) {
+      const h24 = Math.floor(m / 60) % 24;
+      const mins = m % 60;
+      const p = h24 >= 12 ? 'PM' : 'AM';
+      const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+      return `${h12}:${mins < 10 ? '0' + mins : mins} ${p}`;
+    }
+
+    // ================= RENDER GENERATED ITINERARY =================
+    function renderItineraryView(container) {
+      const it = activeGeneratedItinerary;
+      const b = it.budget;
+
+      container.innerHTML = `
+        <div class="space-y-8 animate-fadeIn">
+          
+          <!-- Itinerary Header -->
+          <div class="pb-6 border-b border-[#F5F0E6] flex flex-col md:flex-row md:items-start justify-between gap-6">
+            <div class="space-y-2">
+              <span class="text-xs font-semibold text-[#1E3A2F] flex items-center gap-1.5">
+                <span>✦ YOUR CURATED PUNE ITINERARY</span>
+              </span>
+              <h3 class="font-serif text-3xl sm:text-4xl font-bold tracking-tight text-[#141312]">${it.title}</h3>
+              <p class="font-serif italic text-base sm:text-lg text-[#C85A32]">“${it.tagline}”</p>
+              <p class="text-xs sm:text-sm text-[#54524D] leading-relaxed max-w-2xl">${it.curatorNote}</p>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="copyItinerarySummary()" class="px-4 py-2 rounded-full border border-[#E8E4DA] text-xs font-semibold text-[#2A2926] hover:bg-[#F5F0E6]">
+                📋 Share / Copy Summary
+              </button>
+              <button onclick="saveItineraryPlan()" class="px-4 py-2 rounded-full border border-[#E8E4DA] text-xs font-semibold text-[#2A2926] hover:bg-[#F5F0E6]">
+                ★ Save Plan
+              </button>
+              <button onclick="generateOuting()" class="px-4 py-2 rounded-full bg-[#1E3A2F] text-white text-xs font-semibold hover:bg-[#284E3F]">
+                🔄 Regenerate
+              </button>
+            </div>
+          </div>
+
+          <!-- Budget Overview Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+            <div class="bg-[#FBF9F5] p-4 rounded-2xl border border-[#E8E4DA]">
+              <span class="text-[11px] font-semibold text-[#75726C] uppercase tracking-wider block">Estimated Spend</span>
+              <span class="font-serif text-2xl font-bold text-[#141312] mt-0.5 block">₹${b.totalPerPerson} <span class="text-xs font-normal">/ person</span></span>
+              <span class="text-[10px] text-[#75726C] block mt-0.5">Includes ₹${b.contingency} contingency buffer</span>
+            </div>
+
+            <div class="bg-[#FBF9F5] p-4 rounded-2xl border border-[#E8E4DA]">
+              <span class="text-[11px] font-semibold text-[#75726C] uppercase tracking-wider block">Total Group Spend</span>
+              <span class="font-serif text-2xl font-bold text-[#141312] mt-0.5 block">₹${b.totalGroup}</span>
+              <span class="text-[10px] text-[#75726C] block mt-0.5">${plannerPrefs.groupCount} people shared</span>
+            </div>
+
+            <div class="bg-[#FBF9F5] p-4 rounded-2xl border border-[#E8E4DA]">
+              <span class="text-[11px] font-semibold text-[#75726C] uppercase tracking-wider block">Total Duration</span>
+              <span class="font-serif text-2xl font-bold text-[#141312] mt-0.5 block">~${Math.round(it.totalDurationMinutes / 60 * 10) / 10} hrs</span>
+              <span class="text-[10px] text-[#75726C] block mt-0.5">${it.stops.length} curated stops</span>
+            </div>
+
+            <div class="bg-[#FBF9F5] p-4 rounded-2xl border border-[#E8E4DA]">
+              <span class="text-[11px] font-semibold text-[#75726C] uppercase tracking-wider block">Starting Area</span>
+              <span class="font-serif text-xl font-bold text-[#141312] mt-0.5 block truncate">${plannerPrefs.startingArea.split('&')[0]}</span>
+              <span class="text-[10px] text-[#75726C] block mt-0.5">${plannerPrefs.transportMode}</span>
+            </div>
+          </div>
+
+          <!-- Traffic Advice Banner -->
+          <div class="p-4 rounded-2xl bg-[#E3EDE8]/60 border border-[#B9E4D0] text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+            <div>
+              <strong class="text-[#1E3A2F] block">Local Pune Traffic Advisory:</strong>
+              <span class="text-[#3D3B37]">${it.trafficGuidance.peak} ${it.trafficGuidance.window}</span>
+            </div>
+            <span class="text-[10px] text-[#75726C] bg-white px-2 py-0.5 rounded-full border border-[#B9E4D0] shrink-0">
+              Typical guidance · Check live maps
+            </span>
+          </div>
+
+          <!-- Sequence of Stops -->
+          <div class="space-y-6">
+            <h4 class="font-serif text-xl font-bold text-[#141312]">Ordered Sequence of Stops</h4>
+            <div class="relative pl-6 sm:pl-8 space-y-6 before:absolute before:left-3 before:top-4 before:bottom-4 before:w-0.5 before:bg-[#E8E4DA]">
+              ${it.stops.map((stop, idx) => `
+                <div class="relative">
+                  <div class="absolute -left-6 sm:-left-8 top-5 w-6 h-6 rounded-full bg-[#1E3A2F] text-white flex items-center justify-center text-xs font-bold">
+                    ${stop.order}
+                  </div>
+
+                  <div class="bg-white rounded-3xl p-5 sm:p-7 border border-[#E8E4DA] shadow-soft-sm space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                      <div class="flex items-center gap-2">
+                        <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#F5F0E6] text-[#1A1917]">
+                          ${stop.suggestedArrivalTime} – ${stop.suggestedDepartureTime}
+                        </span>
+                        <span class="text-xs text-[#75726C]">(~${stop.durationMinutes} mins)</span>
+                      </div>
+
+                      <div class="flex items-center gap-3">
+                        <span class="text-xs font-bold text-[#1E3A2F]">
+                          ${stop.place.priceBasis === 'free' ? 'Free stop' : '₹' + stop.estimatedCostPerPerson + ' per person'}
+                        </span>
+                        
+                        <div class="flex items-center gap-1 border-l border-[#F5F0E6] pl-2 text-xs">
+                          ${idx > 0 ? `<button onclick="reorderStop(${idx}, ${idx - 1})" class="p-1 hover:text-[#C85A32]" title="Move up">▲</button>` : ''}
+                          ${idx < it.stops.length - 1 ? `<button onclick="reorderStop(${idx}, ${idx + 1})" class="p-1 hover:text-[#C85A32]" title="Move down">▼</button>` : ''}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+                      <div class="md:col-span-4 aspect-[16/10] rounded-2xl overflow-hidden bg-[#F5F0E6]">
+                        <img src="${stop.place.imageUrl}" alt="${stop.place.name}" class="w-full h-full object-cover" />
+                      </div>
+                      <div class="md:col-span-8 space-y-1.5">
+                        <span class="text-[11px] font-semibold text-[#C85A32]">${stop.place.category} · ${stop.place.neighborhood}</span>
+                        <h4 onclick="openPlaceModal('${stop.place.id}')" class="font-serif text-2xl font-bold text-[#141312] hover:text-[#C85A32] cursor-pointer">${stop.place.name}</h4>
+                        <p class="text-xs text-[#54524D] leading-relaxed">${stop.place.shortDescription}</p>
+                        <p class="text-[11px] italic text-[#1E3A2F] pt-1">Activity note: ${stop.activityNote}</p>
+                      </div>
+                    </div>
+
+                    <div class="pt-3 border-t border-[#F5F0E6] flex flex-wrap items-center justify-between gap-2 text-xs">
+                      <div class="flex items-center gap-2">
+                        <button onclick="openPlaceModal('${stop.place.id}')" class="px-3 py-1.5 rounded-full border border-[#E8E4DA] hover:bg-[#F5F0E6]">
+                          View Guide
+                        </button>
+                        <button onclick="toggleReplaceDrawer(${idx})" class="px-3 py-1.5 rounded-full bg-[#F5F0E6] hover:bg-[#EBE3D3] font-semibold text-[#1E3A2F]">
+                          🔄 Replace Stop
+                        </button>
+                        ${it.stops.length > 1 ? `
+                          <button onclick="removeItineraryStop(${idx})" class="p-1.5 text-[#9E9A92] hover:text-[#DC2626]" title="Remove stop">
+                            ✕
+                          </button>
+                        ` : ''}
+                      </div>
+
+                      <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(stop.place.mapQuery)}" target="_blank" class="text-[#1E3A2F] font-semibold hover:underline">
+                        Directions ↗
+                      </a>
+                    </div>
+
+                    <!-- Replace Drawer -->
+                    <div id="replaceDrawer-${idx}" class="hidden mt-3 p-4 rounded-2xl bg-[#FBF9F5] border border-[#C7C4BC] space-y-3">
+                      <div class="flex justify-between items-center text-xs">
+                        <strong class="text-[#141312]">Compatible Replacements:</strong>
+                        <span class="text-[10px] text-[#75726C]">Same corridor or budget</span>
+                      </div>
+                      <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs">
+                        ${stop.availableAlternatives.map(alt => `
+                          <div onclick="swapItineraryStop(${idx}, '${alt.id}')" class="p-2.5 bg-white rounded-xl border border-[#E8E4DA] hover:border-[#1E3A2F] cursor-pointer space-y-1">
+                            <span class="text-[9px] font-semibold text-[#C85A32]">${alt.category}</span>
+                            <div class="font-bold text-xs truncate">${alt.name}</div>
+                            <span class="text-[10px] font-semibold text-[#1E3A2F] block">${alt.priceBasis === 'free' ? 'Free' : '₹' + alt.averageVisitCost}</span>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  </div>
+
+                  ${stop.travelToNext ? `
+                    <div class="my-2.5 pl-4 flex items-center gap-2 text-[11px] text-[#75726C]">
+                      <span class="px-2.5 py-0.5 rounded-full bg-[#F5F0E6] border border-[#E8E4DA]">
+                        🚶 ~${stop.travelToNext.distanceKm} km transfer (${stop.travelToNext.mins}m + ${stop.travelToNext.buffer}m buffer)
+                      </span>
+                    </div>
+                  ` : ''}
+                </div>
+              `).join('')}
+            </div>
+          </div>
+
+          <!-- Bottom Reset Bar -->
+          <div class="pt-6 border-t border-[#E8E4DA] flex items-center justify-between text-xs">
+            <button onclick="activeGeneratedItinerary = null; renderPlanner();" class="text-[#75726C] hover:text-[#1A1917] font-semibold">
+              ← Edit My Parameters (Change Budget/Mood/Time)
+            </button>
+            <a href="#discover" class="text-[#1E3A2F] font-semibold hover:underline">
+              Browse All Places →
+            </a>
+          </div>
+
+        </div>
+      `;
+    }
+
+    function toggleReplaceDrawer(idx) {
+      const d = document.getElementById('replaceDrawer-' + idx);
+      if (d) d.classList.toggle('hidden');
+    }
+
+    function swapItineraryStop(stopIdx, newPlaceId) {
+      const newPlace = PUNE_PLACES.find(p => p.id === newPlaceId);
+      if (!newPlace || !activeGeneratedItinerary) return;
+
+      activeGeneratedItinerary.stops[stopIdx].place = newPlace;
+      activeGeneratedItinerary.stops[stopIdx].estimatedCostPerPerson = newPlace.averageVisitCost;
+      activeGeneratedItinerary.stops[stopIdx].activityNote = newPlace.bestFor[0] || 'Explore the atmosphere';
+      
+      // Recalculate budget
+      let totalCost = 0;
+      activeGeneratedItinerary.stops.forEach(s => totalCost += s.estimatedCostPerPerson);
+      const contingency = Math.round(totalCost * 0.1);
+      activeGeneratedItinerary.budget.totalPerPerson = totalCost + contingency;
+      activeGeneratedItinerary.budget.totalGroup = (totalCost + contingency) * plannerPrefs.groupCount;
+
+      renderPlanner();
+    }
+
+    function removeItineraryStop(idx) {
+      if (!activeGeneratedItinerary || activeGeneratedItinerary.stops.length <= 1) return;
+      activeGeneratedItinerary.stops.splice(idx, 1);
+      activeGeneratedItinerary.stops.forEach((s, i) => s.order = i + 1);
+
+      let totalCost = 0;
+      activeGeneratedItinerary.stops.forEach(s => totalCost += s.estimatedCostPerPerson);
+      const contingency = Math.round(totalCost * 0.1);
+      activeGeneratedItinerary.budget.totalPerPerson = totalCost + contingency;
+      activeGeneratedItinerary.budget.totalGroup = (totalCost + contingency) * plannerPrefs.groupCount;
+
+      renderPlanner();
+    }
+
+    function reorderStop(from, to) {
+      if (!activeGeneratedItinerary) return;
+      const item = activeGeneratedItinerary.stops.splice(from, 1)[0];
+      activeGeneratedItinerary.stops.splice(to, 0, item);
+      activeGeneratedItinerary.stops.forEach((s, i) => s.order = i + 1);
+      renderPlanner();
+    }
+
+    function copyItinerarySummary() {
+      if (!activeGeneratedItinerary) return;
+      const it = activeGeneratedItinerary;
+      const text = '📍 ' + it.title + '\\n"' + it.tagline + '"\\n\\n' +
+        it.stops.map(s => s.suggestedArrivalTime + ' – ' + s.place.name + ' (' + s.place.neighborhood + ')\\n• Est. Spend: ₹' + s.estimatedCostPerPerson).join('\\n\\n') +
+        '\\n\\n💰 Est. Total: ₹' + it.budget.totalPerPerson + '/person (Group of ' + plannerPrefs.groupCount + ': ₹' + it.budget.totalGroup + ')\\nPlan generated via PunePulse';
+
+      navigator.clipboard.writeText(text);
+      alert('Itinerary copied to clipboard!');
+    }
+
+    function saveItineraryPlan() {
+      if (!activeGeneratedItinerary) return;
+      const saved = JSON.parse(localStorage.getItem('punepulse_plans') || '[]');
+      saved.unshift({
+        title: activeGeneratedItinerary.title,
+        date: new Date().toLocaleDateString(),
+        stops: activeGeneratedItinerary.stops.map(s => s.place.name),
+        spendPerPerson: activeGeneratedItinerary.budget.totalPerPerson
+      });
+      localStorage.setItem('punepulse_plans', JSON.stringify(saved.slice(0, 10)));
+      alert('Itinerary saved locally on your browser!');
+    }
+
+    // ================= MODAL HANDLERS =================
+    function openPlaceModal(placeId) {
+      const place = PUNE_PLACES.find(p => p.id === placeId);
+      if (!place) return;
+
+      const modal = document.getElementById('placeModal');
+      const card = document.getElementById('modalCard');
+      if (!modal || !card) return;
+
+      card.innerHTML = `
+        <div class="absolute top-4 right-4 z-20 flex items-center gap-2">
+          <button onclick="closePlaceModal()" class="w-9 h-9 rounded-full bg-white/90 text-[#1A1917] hover:bg-white flex items-center justify-center font-bold shadow-soft">
+            ✕
+          </button>
+        </div>
+
+        <div class="overflow-y-auto flex-1 divide-y divide-[#E8E4DA]">
+          <div class="relative aspect-[21/9] sm:aspect-[16/7] w-full bg-[#1A1917]">
+            <img src="\${place.imageUrl}" alt="\${place.name}" class="w-full h-full object-cover opacity-90" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#141312] via-black/30 to-transparent"></div>
+            <div class="absolute bottom-5 left-5 right-5 text-white">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#1E3A2F] text-white">\${place.category}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-white/20 text-white">\${place.neighborhood}</span>
+              </div>
+              <h2 class="font-serif text-3xl sm:text-4xl font-bold">\${place.name}</h2>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 space-y-6 bg-white">
+            <div>
+              <h4 class="text-xs font-semibold uppercase tracking-wider text-[#75726C] mb-2">The Pune Experience</h4>
+              <p class="text-sm sm:text-base text-[#2A2926] leading-relaxed">\${place.fullDescription}</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-[#F5F0E6] border border-[#E8E4DA] space-y-1">
+              <strong class="font-serif italic text-sm text-[#1A1917] block">Why Visit</strong>
+              <p class="text-xs text-[#54524D] leading-relaxed">\${place.whyVisit}</p>
+            </div>
+
+            <div>
+              <span class="text-xs font-semibold text-[#75726C] block mb-2">Ideal For</span>
+              <div class="flex flex-wrap gap-2">
+                \${place.bestFor.map(b => '<span class="px-3 py-1 rounded-full text-xs font-medium bg-[#FBF9F5] text-[#3D3B37] border border-[#E8E4DA]">' + b + '</span>').join('')}
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 sm:p-8 bg-[#FBF9F5] space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h4 class="text-xs font-semibold uppercase tracking-wider text-[#75726C]">Budget Breakdown (Verified Benchmarks)</h4>
+                <span class="text-xl font-serif font-bold text-[#141312] block">
+                  \${place.priceBasis === 'free' ? '₹0 · Completely Free' : 'Approx. ₹' + place.averageVisitCost + ' per person'}
+                </span>
+              </div>
+              <span class="text-[11px] text-[#75726C] bg-white px-2.5 py-1 rounded-lg border border-[#E8E4DA]">Basis: \${place.priceBasis}</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+              <div class="bg-white p-3 rounded-xl border border-[#E8E4DA]">
+                <span class="text-[#75726C] text-[11px] block">Range</span>
+                <span class="font-semibold text-[#1A1917]">\${place.priceBasis === 'free' ? '₹0' : '₹' + place.priceMin + ' – ₹' + place.priceMax}</span>
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-[#E8E4DA]">
+                <span class="text-[#75726C] text-[11px] block">Avg Food/Drink</span>
+                <span class="font-semibold text-[#1A1917]">\${place.priceBasis === 'free' ? 'None' : '₹' + place.averageVisitCost}</span>
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-[#E8E4DA]">
+                <span class="text-[#75726C] text-[11px] block">Entry Fee</span>
+                <span class="font-semibold text-[#1A1917]">\${place.priceBasis === 'entry fee' ? '₹' + place.priceMin : '₹0'}</span>
+              </div>
+              <div class="bg-white p-3 rounded-xl border border-[#E8E4DA]">
+                <span class="text-[#75726C] text-[11px] block">Visit Duration</span>
+                <span class="font-semibold text-[#1A1917]">\${place.estimatedVisitDurationMinutes} mins</span>
+              </div>
+            </div>
+
+            <p class="text-[11px] text-[#75726C] italic">Last verified: \${place.lastVerifiedAt}. Menu items subject to seasonal revisions.</p>
+          </div>
+
+          <div class="p-6 sm:p-8 bg-white space-y-4">
+            <h4 class="text-xs font-semibold uppercase tracking-wider text-[#75726C]">Visiting Windows & Practical Details</h4>
+            <p class="text-xs sm:text-sm text-[#2A2926] leading-relaxed">\${place.bestTimeNote}</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-2">
+              <div>
+                <strong class="text-[#1A1917] block">Address:</strong>
+                <span class="text-[#54524D]">\${place.address}</span>
+              </div>
+              <div>
+                <strong class="text-[#1A1917] block">Hours:</strong>
+                <span class="text-[#54524D]">\${place.openingHours}</span>
+              </div>
+            </div>
+
+            <div class="p-3 bg-[#FBF9F5] rounded-xl border border-[#E8E4DA] text-xs">
+              <strong class="text-[#1A1917] block">Transit & Parking:</strong>
+              <span class="text-[#54524D]">\${place.transportAccessibility.nearestMetroOrBus}. Two-wheeler: \${place.transportAccessibility.twoWheelerParking}; Car: \${place.transportAccessibility.carParking}.</span>
+            </div>
+          </div>
+
+          <div class="p-5 bg-white flex flex-col sm:flex-row items-center justify-between gap-3 sticky bottom-0 border-t border-[#E8E4DA]">
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=\${encodeURIComponent(place.mapQuery)}"
+              target="_blank"
+              class="w-full sm:w-auto px-4 py-2.5 rounded-full border border-[#E8E4DA] text-xs font-semibold text-[#2A2926] hover:bg-[#F5F0E6] text-center"
+            >
+              Open in Google Maps ↗
+            </a>
+            <button
+              onclick="closePlaceModal(); setPlannerAreaAndLaunch('\${place.neighborhood}');"
+              class="w-full sm:w-auto px-6 py-2.5 rounded-full bg-[#1E3A2F] text-white text-xs font-semibold hover:bg-[#284E3F]"
+            >
+              ✦ Plan Outing Around This Spot
+            </button>
+          </div>
+        </div>
+      `;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closePlaceModal() {
+      const modal = document.getElementById('placeModal');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function toggleBookmark(placeId) {
+      const saved = JSON.parse(localStorage.getItem('punepulse_bookmarks') || '[]');
+      const idx = saved.indexOf(placeId);
+      if (idx > -1) saved.splice(idx, 1);
+      else saved.push(placeId);
+      localStorage.setItem('punepulse_bookmarks', JSON.stringify(saved));
+      alert('Bookmark updated!');
+    }
+  </script>
+</body>
+</html>
