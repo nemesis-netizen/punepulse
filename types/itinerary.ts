@@ -42,8 +42,9 @@ export interface Itinerary {
   totalDurationMinutes: number;
   budget: BudgetBreakdown;
   trafficGuidance: {
-    peakHourWarning?: string;
-    bestDepartureWindow: string;
-    disclaimer: string;
+  peakWarning?: string;
+  peakHourWarning?: string;
+  bestDepartureWindow: string;
+  disclaimer: string;
   };
 }
