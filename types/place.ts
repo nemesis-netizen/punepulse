@@ -70,8 +70,8 @@ export interface Place {
   dataConfidence: 'verified' | 'high-confidence-estimate' | 'illustrative-sample';
   transportAccessibility: {
     walkingFriendly: boolean;
-    twoWheelerParking: 'easy' | 'moderate' | 'difficult';
-    carParking: 'easy' | 'valet-only' | 'difficult';
+   twoWheelerParking: 'easy' | 'moderate' | 'difficult' | string;
+  carParking: 'easy' | 'moderate' | 'valet-only' | 'difficult' | string;
     nearestMetroOrBus: string;
   };
   amenities: string[];
