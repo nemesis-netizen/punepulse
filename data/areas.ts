@@ -7,7 +7,7 @@ export interface AreaInfo {
   description: string;
   vibe: string;
   bestTimeToVisit: string;
-  walkingScore: 'Very High' | 'High' | 'Moderate' | 'Low';
+  walkingScore: string;
   parkingAdvice: string;
   transitAccess: string;
   highlights: string[];
@@ -113,7 +113,7 @@ export const PUNE_AREAS: AreaInfo[] = [
     description: 'The natural western sanctuary of Pune featuring the expansive Vetal Hill ridge, Pashan wetland lake, and tranquil trails where birdwatchers and runners breathe clean hill air.',
     vibe: 'Quiet, rugged, nature-first, contemplative.',
     bestTimeToVisit: 'Sunrise (6:00 AM – 8:00 AM) and Golden Hour (5:00 PM – 6:45 PM).',
-    walkingScore: 'Very High (on trails)',
+    walkingScore: 'Very High',
     parkingAdvice: 'Ample open parking near ARAI gate and Pashan Lake entrance.',
     transitAccess: 'Auto-rickshaw or personal two-wheeler recommended for trailhead access.',
     highlights: ['Vetal Tekdi', 'ARAI Hill Quarry', 'Pashan Lake Nature Trail', 'Sunset Point'],
